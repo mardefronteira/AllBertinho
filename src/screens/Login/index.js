@@ -2,8 +2,13 @@ import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import Header from '../../components/Header'
 import api from '../../services/api';
+import { useDispatch } from 'react-redux';
+
+import * as actions from '../../store/modules/auth/actions';
 
 function Inicial() {
+  const dispatch = useDispatch();
+
   //testando se api ta funcionando
   useEffect(() => {
     async function response() {
@@ -13,6 +18,13 @@ function Inicial() {
 
     response();
   }, [])
+  function submit(e) {
+    //para teste
+    const email = 'admin@admin.com';
+    const password = '12345';
+
+    dispatch(actions.signInRequest(email, password));
+  }
   return (
     <>
       <Helmet>
@@ -22,6 +34,7 @@ function Inicial() {
       <main>
         <h2>Login!</h2>
       </main>
+      <button onClick={submit}>Testar</button>
     </>
   )
 }
