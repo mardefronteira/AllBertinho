@@ -1,13 +1,29 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Header from '../../components/Header';
+import api from '../../services/api';
 
 function Produto( props ) {
+
+  useEffect(() => {
+    const { match } = props;
+    const { params } = match;
+    const { id } = params;
+
+    console.log(props);
+    async function response() {
+      const data = await api.get('/product');
+      console.log(data);
+    }
+
+    response();
+  }, []);
+
   return (
     <>
       <Helmet>
-        <title>ALLBERTINHO | { props.name }</title>
+        <title>ALLBERTINHO </title>
       </Helmet>
       <Header />
       <main>
