@@ -11,7 +11,7 @@ function Produto( props ) {
     const { params } = match;
     const { id } = params;
 
-    console.log(props);
+    console.log(id);
     async function response() {
       const data = await api.get('/product');
       console.log(data);

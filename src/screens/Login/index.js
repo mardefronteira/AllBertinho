@@ -20,8 +20,8 @@ function Inicial() {
   }, [])
   function submit(e) {
     //para teste
-    const email = 'user@gmail.com';
-    const password = '12345';
+    const email = 'user@user.com';
+    const password = '123456';
 
     dispatch(actions.signInRequest(email, password));
   }
