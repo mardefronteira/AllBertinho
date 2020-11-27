@@ -25,7 +25,7 @@ export default function Routes() {
       <RouterAdmin isAdmin path="/admin" component={Admin} />
       <RouterPrivate isPrivate path="/voce" component={() => <Cliente name="Elisberto" />} />
       
-      <RouterPrivate component={QuatroZeroQuatro} />
+      <Route component={QuatroZeroQuatro} />
     </Switch>
   </BrowserRouter>
   );
