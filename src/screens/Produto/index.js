@@ -29,17 +29,14 @@ import api from '../../services/api';
       async function fetchProduct(){
         const {data} = await api.get(`/product/${id}`)
         const {name, description, quantity, price, image} = data[0];
-        console.log(data)
+       
         setProduct(name);
         setDescription(description);
         setPrice(price);
         setQuantity(quantity)
         setImage(image);
-       
-       
       }
       fetchProduct();
-      
     }, [])
 
     const addToCart = ()=>{
@@ -53,9 +50,8 @@ import api from '../../services/api';
       :
       ( <Redirect to='/voce'/>))
     }
-
-
-      return (
+      
+    return (
       <>
           <Helmet>
             <title>ALLBERTINHO | Produto </title>
