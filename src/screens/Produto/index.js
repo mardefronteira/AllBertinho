@@ -8,42 +8,46 @@ import api from '../../services/api';
 
 
  function Produto(props) {
-   //gets product name, id and description
-   const [name, setName] = useState();
-    const [productID, setProduct] = useState();
-    const [price, setPrice] = useState("");
+   //Sets product, name, id, description, quantity, image
+    const [product, setProduct] = useState();
+    const [description, setDescription] = useState();
+    const [price, setPrice] = useState();
     const [quantity, setQuantity] = useState();
     const [image, setImage] = useState();
     //cart product state to cart
     const [cart, setCart] = useState(0);
-
+    //validation of cart
+    const [valid, isSaleValid] = useState("");
 
     useEffect(() => {
-      // console.log()
-      async function fetchProduct(){
-        const properties = await api.get('/product/:id')
-        console.log(properties);
-      }
+      
       const { match } = props;
-      const { params, path } = match;
+      const { params } = match;
       const { id } = params;
-      console.log(props);
+      
 
-      setImage(path);
-      setProduct(id);
+      async function fetchProduct(){
+        const {data} = await api.get(`/product/${id}`)
+        const {name, description, quantity, price, image} = data[0];
+        console.log(data)
+        setProduct(name);
+        setDescription(description);
+        setPrice(price);
+        setQuantity(quantity)
+        setImage(image);
+       
+       
+      }
       fetchProduct();
-
+      
     }, [])
 
     const addToCart = ()=>{
-
         setCart(cart + 1);
     }
 
-    const [valid, isSaleValid] = useState("");
+    
     const postSale = ()=>{
-
-
       return isSaleValid( cart < 1 ?
       (<Alert variant='danger' >Voce ainda não adicionou nenhum item no carrinho.</Alert>)
       :
@@ -54,21 +58,21 @@ import api from '../../services/api';
       return (
       <>
           <Helmet>
-            <title>ALLBERTINHO | </title>
+            <title>ALLBERTINHO | Produto </title>
           </Helmet>
           <Header />
           <main>
-      <Image src="Hello" alt="Oops" fluid></Image>
+      <Image src={image} alt="Oops" fluid></Image>
               <Row>
                 <Col sm={8}>
                 <ListGroup variant='flush'>
                     <ListGroup.Item>
-                      <h3>{productID}</h3>
+                      <h3>{product}</h3>
                     </ListGroup.Item>
 
                     <ListGroup.Item>
                       <DetalheProduto/>
-                      {image}
+                      {description}
                     </ListGroup.Item>
 
                     <ListGroup.Item>
@@ -85,7 +89,7 @@ import api from '../../services/api';
                           <Row>
                             <Col>Preço: </Col>
                             <Col>
-                              <strong>R${price}</strong>
+                              <strong>R$ {price}</strong>
                             </Col>
                           </Row>
                         </ListGroup.Item>
