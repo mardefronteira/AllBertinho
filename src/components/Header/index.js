@@ -22,7 +22,7 @@ function Header () {
           <LinkContainer to="/voce">
             <Nav.Link>Painel Cliente</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/product/:id">
+          <LinkContainer to="/product">
             <Nav.Link>Detalhes Produto</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/aisdhaoidsh">

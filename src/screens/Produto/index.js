@@ -1,78 +1,74 @@
 import React, {useState, useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
+import { Alert, Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import Header from '../../components/Header';
 import DetalheProduto from "../../components/DetalheProduto";
 import api from '../../services/api';
 
 
  function Produto(props) {
-    const [productId, setProductId] = useState();
-    const [add, addToCart] = useState(0);
+   //gets product name, id and description
+   const [name, setName] = useState();
+    const [productID, setProduct] = useState();
     const [price, setPrice] = useState("");
     const [quantity, setQuantity] = useState();
+    const [image, setImage] = useState();
+    //cart product state to cart
+    const [cart, setCart] = useState(0);
+
 
     useEffect(() => {
-      getProduct();
-      
+      // console.log()
+      async function fetchProduct(){
+        const properties = await api.get('/product/:id')
+        console.log(properties);
+      }
+      const { match } = props;
+      const { params, path } = match;
+      const { id } = params;
+      console.log(props);
+
+      setImage(path);
+      setProduct(id);
+      fetchProduct();
+
     }, [])
 
-    //Criar a validacao do token pra saber se o usuario ja esta logado
-    const isUserLoggedIn = false;
-   
+    const addToCart = ()=>{
 
-    const getProduct = ()=>{
-       try { api.get(`${api.baseURL}/product/:id`).then( (res)=>{
+        setCart(cart + 1);
+    }
 
-          if(!isUserLoggedIn){
-              setProductId(<p>{res.params.id}</p>)
-              setPrice(res.body.price)
-              setQuantity(res.body.quantity)
-              console.log("User logged in")
-              console.log(price)} 
-          else{ 
-              console.log("User invalid")}
-          return res.data.id;}) 
-        } 
-        catch(err){
-          console.log(err);
-        }
-       
-    }
-    const cart = ()=>{
-        addToCart(add + 1)
-    }
+    const [valid, isSaleValid] = useState("");
     const postSale = ()=>{
-      // api.get(api.baseURL).then( (res)=>{
-      if (cart < 1) {
-        return console.log("Voce precisa adicionar ao carrinho primeiro");
-      }
-      else{
-        return console.log("compra realizada com sucesso");
-      }
-  
+
+
+      return isSaleValid( cart < 1 ?
+      (<Alert variant='danger' >Voce ainda não adicionou nenhum item no carrinho.</Alert>)
+      :
+      ( <Redirect to='/voce'/>))
     }
 
 
       return (
       <>
           <Helmet>
-            <title>ALLBERTINHO | { props.name }</title>
+            <title>ALLBERTINHO | </title>
           </Helmet>
           <Header />
           <main>
-          <Image src="Hello" alt="Oops" fluid></Image>
+      <Image src="Hello" alt="Oops" fluid></Image>
               <Row>
                 <Col sm={8}>
                 <ListGroup variant='flush'>
                     <ListGroup.Item>
-                      <h3>{productId}</h3>
+                      <h3>{productID}</h3>
                     </ListGroup.Item>
 
                     <ListGroup.Item>
                       <DetalheProduto/>
-                      {productId}
+                      {image}
                     </ListGroup.Item>
 
                     <ListGroup.Item>
@@ -80,7 +76,7 @@ import api from '../../services/api';
                     </ListGroup.Item>
                   </ListGroup>
                 </Col>
-              
+
 
                 <Col sm={4}>
                     <Card>
@@ -107,21 +103,21 @@ import api from '../../services/api';
                             id="cart"
                             className='btn-group'
                             type='button'
-                            onClick={cart}
+                            onClick={addToCart}
                             // disabled={}.countInStock === 0}
                           >
-                          Adicionar ao Carrinho 
+                          Adicionar ao Carrinho
                         </Button>
-                       
+
                       </ListGroup.Item>
                       <ListGroup.Item>
                         <Row>
                           <Col>
-                          <p>Carrinho</p>
+                          <p>Carrinho:</p>
                           </Col>
 
                           <Col>
-                            {add}
+                            {cart}
                           </Col>
                         </Row>
                       </ListGroup.Item>
@@ -130,7 +126,7 @@ import api from '../../services/api';
                 </Col>
             </Row>
           </main>
-        
+
           <footer>
           <Row>
             <Col>
@@ -138,16 +134,22 @@ import api from '../../services/api';
               <Col>
                 <Link className='btn btn-light my-3' to='/'>
                 Voltar
-              </Link>
-                </Col>
-              
-              <Link onClick={postSale} className='btn btn-success  my-3' > 
+                </Link>
+              </Col>
+
+              <Col>
+                <Link onClick={postSale} className='btn btn-success  my-3' >
                 Comprar
-              </Link>
-            
+                </Link>
+              </Col>
+
+              <Col>
+                {valid}
+              </Col>
+
             </Row>
             </Col>
-        
+
           </Row>
           </footer>
       </>

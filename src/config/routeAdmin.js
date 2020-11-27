@@ -5,24 +5,27 @@ import store from '../store';
 
 export default function RouterPrivate({
   component: Component,
-  isPrivate = false,
+  isAdmin = false,
   ...rest
 }) {
 
-  const { signed } = store.getState().auth;
-
-  if (!signed && isPrivate) {
-      return <Redirect to="/login" />
-  }      
+  const { signed, user } = store.getState().auth;
   
-  if(signed && !isPrivate) {
-      return <Redirect to="/voce" />
+  if(!signed && isAdmin && !user) {
+      return <Redirect to='/login'/>
+  }
+
+  if(signed && !isAdmin && user) {
+    return <Redirect to="/admin" />
   }
 
   return (
+    user ? 
     <Route
       { ...rest }
       component={Component}
     />
+    :
+    <Redirect to="/login" />
   )
 }

@@ -10,6 +10,7 @@ import Login from './screens/Login';
 import QuatroZeroQuatro from './screens/QuatroZeroQuatro';
 
 import RouterPrivate from '../src/config/routePrivate';
+import RouterAdmin from '../src/config/routeAdmin';
 
 export default function Routes() {
   
@@ -17,11 +18,11 @@ export default function Routes() {
     <BrowserRouter>
     <Switch>
       <RouterPrivate path="/cadastro" component={CadastroCliente} />
-      <RouterPrivate path="/product/:id" component={() => <Produto name='Nome Do Produto' />} />
+      <RouterPrivate path="/product/:id" component={Produto} />
       <RouterPrivate path="/login" component={Login} />
       <RouterPrivate path="/" component={Inicial} exact />
 
-      <RouterPrivate isPrivate path="/admin" component={Admin} />
+      <RouterAdmin isAdmin path="/admin" component={Admin} />
       <RouterPrivate isPrivate path="/voce" component={() => <Cliente name="Elisberto" />} />
       
       <RouterPrivate component={QuatroZeroQuatro} />
