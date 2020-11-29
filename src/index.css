@@ -13,7 +13,7 @@ code {
 }
 
 main {
-  margin: 5vh 10vw;
+  margin: 8vh 12vw;
 }
 
 h1 {
@@ -25,9 +25,21 @@ h2 {
 }
 
 section {
-  margin: 3vh 3vw;
+  margin: 12vh 7vw;
 }
 
 footer {
   margin: 5vh 12vw;
+}
+
+.title-box{
+  font-size: 20px;
+
+}
+.txt-capitalize{
+  display: inline-block;
+
+}
+.txt-capitalize::first-letter{
+  text-transform: capitalize;
 }

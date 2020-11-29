@@ -6,6 +6,7 @@ import store from '../store';
 export default function RouterPrivate({
   component: Component,
   isPrivate = false,
+  free = true,
   ...rest
 }) {
 
@@ -14,7 +15,7 @@ export default function RouterPrivate({
   if (!signed && isPrivate) {
       return <Redirect to="/login" />
   }      
-  
+
   if(signed && !isPrivate) {
       return <Redirect to="/voce" />
   }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import CadastroCliente from './screens/CadastroCliente';
 import Inicial from './screens/Inicial';
@@ -25,7 +25,7 @@ export default function Routes() {
       <RouterAdmin isAdmin path="/admin" component={Admin} />
       <RouterPrivate isPrivate path="/voce" component={() => <Cliente name="Elisberto" />} />
       
-      <RouterPrivate component={QuatroZeroQuatro} />
+      <Route component={QuatroZeroQuatro} />
     </Switch>
   </BrowserRouter>
   );

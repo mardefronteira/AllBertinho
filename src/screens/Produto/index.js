@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Alert, Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
+import '../../index.css';
+import '../../bootstrap.min.css';
 import Header from '../../components/Header';
 import DetalheProduto from "../../components/DetalheProduto";
 import api from '../../services/api';
@@ -14,6 +16,7 @@ import api from '../../services/api';
     const [price, setPrice] = useState();
     const [quantity, setQuantity] = useState();
     const [image, setImage] = useState();
+    const [sold, setStatus] = useState();
     //cart product state to cart
     const [cart, setCart] = useState(0);
     //validation of cart
@@ -25,26 +28,41 @@ import api from '../../services/api';
       const { params } = match;
       const { id } = params;
       
-
+      
       async function fetchProduct(){
         const {data} = await api.get(`/product/${id}`)
-        const {name, description, quantity, price, image} = data[0];
-       
-        setProduct(name);
-        setDescription(description);
-        setPrice(price);
+        const {name, description, quantity, price, image, sold} = data[0];
+      //  console.log(data)
+        setProduct(name)
+        setDescription(description)
+        setPrice(price)
         setQuantity(quantity)
-        setImage(image);
+        setImage(image)
+        setStatus(sold)
+      
+  
       }
       fetchProduct();
     }, [])
 
     const addToCart = ()=>{
+      if (cart < quantity){
         setCart(cart + 1);
+      }        
     }
+    const postSale =  async ()=>{
+      const { match } = props;
+      const { params } = match;
+      const { id } = params;
+      
+      const qtyinStock = quantity - cart; 
+      if(qtyinStock < 0){
+        sold = true;
+        const {data} = await api.patch(`/product/${id}`, { sold: sold})
+        
+      }
+      console.log(qtyinStock)
 
-    
-    const postSale = ()=>{
       return isSaleValid( cart < 1 ?
       (<Alert variant='danger' >Voce ainda não adicionou nenhum item no carrinho.</Alert>)
       :
@@ -58,21 +76,21 @@ import api from '../../services/api';
           </Helmet>
           <Header />
           <main>
-      <Image src={image} alt="Oops" fluid></Image>
+      <Image src={image} alt="Não foi possível carregar img" fluid></Image>
               <Row>
                 <Col sm={8}>
                 <ListGroup variant='flush'>
-                    <ListGroup.Item>
-                      <h3>{product}</h3>
+                    <ListGroup.Item className="text-capitalize title-box">
+                      <strong> {product}</strong>
+                    </ListGroup.Item>
+
+                    <ListGroup.Item  >
+                      <DetalheProduto />
+                      <p className='txt-capitalize' > {description}</p>
                     </ListGroup.Item>
 
                     <ListGroup.Item>
-                      <DetalheProduto/>
-                      {description}
-                    </ListGroup.Item>
-
-                    <ListGroup.Item>
-                      Quantidade {quantity}
+                      <p>Quantidade</p> {quantity}
                     </ListGroup.Item>
                   </ListGroup>
                 </Col>
@@ -81,7 +99,7 @@ import api from '../../services/api';
                 <Col sm={4}>
                     <Card>
                       <ListGroup variant='flush'  >
-                        <ListGroup.Item className="justify-content-lg-center">
+                        <ListGroup.Item >
                           <Row>
                             <Col>Preço: </Col>
                             <Col>
@@ -127,9 +145,8 @@ import api from '../../services/api';
             </Row>
           </main>
 
-          <footer>
-          <Row>
-            <Col>
+         
+          <footer >
             <Row>
               <Col>
                 <Link className='btn btn-light my-3' to='/'>
@@ -137,8 +154,8 @@ import api from '../../services/api';
                 </Link>
               </Col>
 
-              <Col>
-                <Link onClick={postSale} className='btn btn-success  my-3' >
+              <Col >
+                <Link onClick={postSale} className='btn btn-success float-sm-right my-3' >
                 Comprar
                 </Link>
               </Col>
@@ -148,9 +165,6 @@ import api from '../../services/api';
               </Col>
 
             </Row>
-            </Col>
-
-          </Row>
           </footer>
       </>
       )

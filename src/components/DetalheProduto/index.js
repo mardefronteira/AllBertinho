@@ -6,7 +6,7 @@ function DetalheProduto() {
   return (
     <>
     
-      <p><strong>Detalhes de produto</strong></p>
+      <p><strong>Detalhes do produto</strong></p>
 
     
     </>
