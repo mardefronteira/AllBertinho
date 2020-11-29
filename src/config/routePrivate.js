@@ -6,7 +6,6 @@ import store from '../store';
 export default function RouterPrivate({
   component: Component,
   isPrivate = false,
-  free = true,
   ...rest
 }) {
 
