@@ -1,8 +1,10 @@
+
 import React, {useState, useEffect} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Alert, Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import Header from '../../components/Header';
+
 import DetalheProduto from "../../components/DetalheProduto";
 import api from '../../services/api';
 
@@ -157,3 +159,36 @@ import api from '../../services/api';
     }
 
 export default Produto;
+
+// import api from '../../services/api';
+
+// function Produto( props ) {
+
+//   useEffect(() => {
+//     const { match } = props;
+//     const { params } = match;
+//     const { id } = params;
+
+//     console.log(id);
+//     async function response() {
+//       const data = await api.get('/product');
+//       console.log(data);
+//     }
+
+//     response();
+//   }, []);
+
+//   return (
+//     <>
+//       <Helmet>
+//         <title>ALLBERTINHO </title>
+//       </Helmet>
+//       <Header />
+//       <main>
+//         <h2>Detalhes do produto que vc quer simmmm! <span>😏😏😏</span></h2>
+//       </main>
+//     </>
+//   )
+// }
+
+// export default Produto;

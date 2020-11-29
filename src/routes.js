@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 import CadastroCliente from './screens/CadastroCliente';
 import Inicial from './screens/Inicial';
@@ -18,14 +18,18 @@ export default function Routes() {
     <BrowserRouter>
     <Switch>
       <RouterPrivate path="/cadastro" component={CadastroCliente} />
+
       <RouterPrivate path="/product/:id" component={Produto} />
+
+//       <Route path="/voce-quer/:id" component={Produto} />
+
       <RouterPrivate path="/login" component={Login} />
       <RouterPrivate path="/" component={Inicial} exact />
 
       <RouterAdmin isAdmin path="/admin" component={Admin} />
       <RouterPrivate isPrivate path="/voce" component={() => <Cliente name="Elisberto" />} />
       
-      <RouterPrivate component={QuatroZeroQuatro} />
+      <Route component={QuatroZeroQuatro} />
     </Switch>
   </BrowserRouter>
   );

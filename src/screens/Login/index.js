@@ -11,7 +11,11 @@ function Inicial() {
   
   function submit(e) {
     //para teste
-    const email = 'admin@admin.com';
+
+//     const email = 'admin@admin.com';
+
+    const email = 'user@user.com';
+
     const password = '123456';
 
     dispatch(actions.signInRequest(email, password));
