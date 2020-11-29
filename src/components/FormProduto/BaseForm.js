@@ -32,16 +32,6 @@ const BaseForm = ({
         </FormField>
 
         <FormField
-          label="Quantidade"
-          name="quantity"
-        >
-          <Input
-            as={Field}
-            name="quantity"
-          />
-        </FormField>
-
-        <FormField
           label="Preço"
           name="price"
         >

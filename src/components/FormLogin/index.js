@@ -24,7 +24,7 @@ const FormikLogin =
   }),
   handleSubmit(clientInfo, { props, resetForm, setErrors, setSubmitting }) {
 
-      console.log(clientInfo);
+      // console.log(clientInfo);
       // props.dispatch(actions.signInRequest(clientInfo));
       props.signInRequest(clientInfo);
 
