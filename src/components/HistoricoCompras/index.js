@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 function HistoricoCompras() {
   return (
     <>
-      <p>Os produtos que você já tem</p>
+    suas compras
     </>
   )
 }

@@ -43,3 +43,9 @@ footer {
 .txt-capitalize::first-letter{
   text-transform: capitalize;
 }
+label {
+  display: flex;
+  /* justify-content: space-between; */
+  /* align-content: space-between;  */
+  width:40vw;
+}

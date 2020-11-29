@@ -9,19 +9,19 @@ import * as actions from '../../store/modules/auth/actions';
 
 function Inicial() {
   const dispatch = useDispatch();
-  
-  function submit(e) {
+
+  function submitAdmin(e) {
     //para teste
-
-//  const email = 'admin@admin.com';
-
-    const email = 'user@user.com';
-
-    const password = '123456';
-
+    const email = 'admin@gmail.com';
+    const password = '12345';
     dispatch(actions.signInRequest(email, password));
   }
-  
+  function submitUser(e) {
+    //para teste
+    const email = 'cliente@gmail.com';
+    const password = '12345';
+    dispatch(actions.signInRequest(email, password));
+  }
   return (
     <>
       <Helmet>
@@ -32,14 +32,21 @@ function Inicial() {
       <main>
         <Row>
           <Col>
-          <h2>Faça seu login</h2>
-            <Link onClick={submit} className='btn btn-light float-sm-left my-3'>
+          <h2>Faça seu login admin</h2>
+            <Link onClick={submitAdmin} className='btn btn-light float-sm-left my-3'>
                 Login
             </Link>
           </Col>     
         </Row>
       
-      
+        <Row>
+          <Col>
+          <h2>Faça seu login User</h2>
+            <Link onClick={submitUser} className='btn btn-light float-sm-left my-3'>
+                Cadastre-se
+            </Link>
+          </Col> 
+        </Row>
         <Row>
           <Col>
           <h2>Não tem conta?</h2>
@@ -52,7 +59,6 @@ function Inicial() {
       
         
       </main>
-
 
     
      

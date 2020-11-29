@@ -2,12 +2,14 @@ import React, {useState, useEffect} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Alert, Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
+import { toast } from 'react-toastify';
 import '../../index.css';
 import '../../bootstrap.min.css';
 import Header from '../../components/Header';
 import DetalheProduto from "../../components/DetalheProduto";
 import api from '../../services/api';
-
+import * as actions from '../../store/modules/auth/actions';
+import store from '../../store';
 
  function Produto(props) {
    //Sets product, name, id, description, quantity, image
@@ -21,13 +23,16 @@ import api from '../../services/api';
     const [cart, setCart] = useState(0);
     //validation of cart
     const [valid, isSaleValid] = useState("");
+    const  dispatch = useDispatch()
 
     useEffect(() => {
-      
+
       const { match } = props;
       const { params } = match;
       const { id } = params;
-      
+
+      const { token } = store.getState().auth
+      console.log(token)
       
       async function fetchProduct(){
         const {data} = await api.get(`/product/${id}`)
@@ -39,8 +44,6 @@ import api from '../../services/api';
         setQuantity(quantity)
         setImage(image)
         setStatus(sold)
-      
-  
       }
       fetchProduct();
     }, [])
@@ -61,14 +64,14 @@ import api from '../../services/api';
         const {data} = await api.patch(`/product/${id}`, { sold: sold})
         
       }
-      console.log(qtyinStock)
+      
 
       return isSaleValid( cart < 1 ?
-      (<Alert variant='danger' >Voce ainda não adicionou nenhum item no carrinho.</Alert>)
+      (toast.error("Voce ainda não adicionou nenhum item no carrinho"))
       :
       ( <Redirect to='/voce'/>))
     }
-      
+
     return (
       <>
           <Helmet>
@@ -160,9 +163,7 @@ import api from '../../services/api';
                 </Link>
               </Col>
 
-              <Col>
-                {valid}
-              </Col>
+             
 
             </Row>
           </footer>
