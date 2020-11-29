@@ -22,16 +22,16 @@ import api from '../../services/api';
     const [valid, isSaleValid] = useState("");
 
     useEffect(() => {
-      
+
       const { match } = props;
       const { params } = match;
       const { id } = params;
-      
+
 
       async function fetchProduct(){
         const {data} = await api.get(`/product/${id}`)
         const {name, description, quantity, price, image} = data[0];
-       
+
         setProduct(name);
         setDescription(description);
         setPrice(price);
@@ -45,14 +45,14 @@ import api from '../../services/api';
         setCart(cart + 1);
     }
 
-    
+
     const postSale = ()=>{
       return isSaleValid( cart < 1 ?
       (<Alert variant='danger' >Voce ainda não adicionou nenhum item no carrinho.</Alert>)
       :
       ( <Redirect to='/voce'/>))
     }
-      
+
     return (
       <>
           <Helmet>
@@ -159,36 +159,3 @@ import api from '../../services/api';
     }
 
 export default Produto;
-
-// import api from '../../services/api';
-
-// function Produto( props ) {
-
-//   useEffect(() => {
-//     const { match } = props;
-//     const { params } = match;
-//     const { id } = params;
-
-//     console.log(id);
-//     async function response() {
-//       const data = await api.get('/product');
-//       console.log(data);
-//     }
-
-//     response();
-//   }, []);
-
-//   return (
-//     <>
-//       <Helmet>
-//         <title>ALLBERTINHO </title>
-//       </Helmet>
-//       <Header />
-//       <main>
-//         <h2>Detalhes do produto que vc quer simmmm! <span>😏😏😏</span></h2>
-//       </main>
-//     </>
-//   )
-// }
-
-// export default Produto;

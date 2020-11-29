@@ -1,0 +1,54 @@
+import { withFormik } from 'formik';
+import * as Yup from 'yup';
+import BaseForm from './BaseForm';
+import { useHistory } from 'react-router-dom';
+
+const FormCliente =
+  withFormik ({
+  mapPropsToValues({
+    email,
+    name,
+    password,
+  }) {
+    return {
+      email: '',
+      name: '',
+      password: '',
+      passwordConfirmation: '',
+    }
+  },
+  validationSchema: Yup.object().shape({
+    email: Yup.string().required('Este campo é obrigatório'),
+    name: Yup.string().required('Este campo é obrigatório'),
+    password: Yup.string().required('Este campo é obrigatório').min('8', `Sua senha deve conter ao menos 8 caracteres`),
+    passwordConfirmation: Yup.string()
+     .oneOf([Yup.ref('password'), null], 'A senha não corresponde à anterior')
+  }),
+  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+
+
+    if (false /*email já está na db*/){
+      setErrors({ email: 'Email já cadastrado.'})
+    } else {
+      const thisUser = {
+        email: values.email,
+        name: values.name,
+        password: values.password,
+        admin: false,
+        timestamps: true,
+      }
+
+      /*ENVIAR DADOS PRA DB AQUI*/
+      console.log(thisUser)
+
+      resetForm();
+      alert("Eba, tudo certo!!");
+
+    }
+    setSubmitting(false);
+  }//close handleSubmit
+})(BaseForm);
+
+
+
+export default FormCliente;

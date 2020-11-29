@@ -8,18 +8,20 @@ import * as actions from '../../store/modules/auth/actions';
 
 function Inicial() {
   const dispatch = useDispatch();
-  
-  function submit(e) {
+
+  function submitAdmin(e) {
     //para teste
-
-//     const email = 'admin@admin.com';
-
-    const email = 'user@user.com';
-
+    const email = 'admin@admin.com';
     const password = '123456';
-
     dispatch(actions.signInRequest(email, password));
   }
+  function submitUser(e) {
+    //para teste
+    const email = 'user@user.com';
+    const password = '123456';
+    dispatch(actions.signInRequest(email, password));
+  }
+
   return (
     <>
       <Helmet>
@@ -30,7 +32,8 @@ function Inicial() {
         <h2>Login!</h2>
       </main>
 
-      <button onClick={submit}>Testar</button>
+      <button onClick={submitAdmin}>Testar Admin</button>
+      <button onClick={submitUser}>Testar User</button>
 
       <footer>
 

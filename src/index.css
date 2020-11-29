@@ -31,3 +31,10 @@ section {
 footer {
   margin: 5vh 12vw;
 }
+
+label {
+  display: flex;
+  /* justify-content: space-between; */
+  /* align-content: space-between;  */
+  width:40vw;
+}
