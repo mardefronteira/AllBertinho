@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 import Header from '../../components/Header';
-// import FormLogin from '../../components/FormLogin';
-import api from '../../services/api';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import * as actions from '../../store/modules/auth/actions';
@@ -14,7 +13,7 @@ import BaseForm from '../../components/FormLogin/BaseForm';
 
 //formik
 
-function Inicial() {
+function Login() {
   const dispatch = useDispatch();
 
   function submitUser({email, password}) {
@@ -38,7 +37,6 @@ function Inicial() {
     }),
     handleSubmit(clientInfo, { resetForm, setErrors, setSubmitting }) {
 
-        console.log(clientInfo);
         submitUser(clientInfo);
 
         setSubmitting(false);
@@ -56,6 +54,8 @@ function Inicial() {
       <main>
         <h2>Login!</h2>
         <FormLogin />
+        <br />
+        <p>Não tem cadastro? <Link to="/cadastro">Crie uma conta.</Link></p>
       </main>
 
       <footer>
@@ -65,4 +65,4 @@ function Inicial() {
   )
 }
 
-export default Inicial;
+export default Login;

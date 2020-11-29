@@ -7,22 +7,21 @@ import api from '../../services/api';
 const FormProduto =
   withFormik ({
   mapPropsToValues({
-    email,
     name,
-    password,
+    description,
+    price,
+    image,
   }) {
     return {
       name: '',
       description: '',
       price: '',
-      quantity: '',
       image: '',
     }
   },
   validationSchema: Yup.object().shape({
     description: Yup.string().required('Este campo é obrigatório.'),
     name: Yup.string().required('Este campo é obrigatório.'),
-    quantity: Yup.number('Este não é um número válido.').required('Este campo é obrigatório.'),
     price: Yup.number('Este não é um número válido.').required('Este campo é obrigatório.'),
     image: Yup.string().url('Essa não é uma url válida.').required('Este campo é obrigatório.'),
   }),
@@ -32,9 +31,7 @@ const FormProduto =
       name: values.name,
       description: values.description,
       price: values.price,
-      quantity: values.quantity,
       image: values.image,
-      sold: false,
     }
 
     /*ENVIAR DADOS PRA DB AQUI*/
