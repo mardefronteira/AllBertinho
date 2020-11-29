@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-<<<<<<< main
+
   baseURL: 'http://allbertinhoback.herokuapp.com/', //colocar a porta usada no de vcs
 
   /*
