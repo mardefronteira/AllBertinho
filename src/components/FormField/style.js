@@ -52,17 +52,4 @@ export const Input = styled.input`
   &:focus {
     border-bottom-color: #999;
   }
-
-  /* &:focus + span {
-    transform: scale(.6) translateY(-10px);
-  }
-
-  ${({ hasvalue }) => {
-
-    return hasvalue && css`
-      &:not([type="color"]) + span {
-        transform: scale(.6) translateY(-10px);
-      }
-  `;
-  }} */
 `;
