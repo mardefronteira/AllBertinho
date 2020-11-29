@@ -72,10 +72,6 @@ import api from '../../services/api';
                       <DetalheProduto/>
                       {description}
                     </ListGroup.Item>
-
-                    <ListGroup.Item>
-                      Quantidade {quantity}
-                    </ListGroup.Item>
                   </ListGroup>
                 </Col>
 
