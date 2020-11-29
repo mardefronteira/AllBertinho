@@ -1,11 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import React, {useEffect, useState} from 'react';
 
 function HistoricoCompras() {
+
   return (
     <>
-    suas compras
+  
+    
+    
     </>
   )
 }

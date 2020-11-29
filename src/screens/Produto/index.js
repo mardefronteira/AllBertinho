@@ -7,22 +7,21 @@ import '../../index.css';
 import '../../bootstrap.min.css';
 import Header from '../../components/Header';
 import DetalheProduto from "../../components/DetalheProduto";
+import HistoricoCompras from "../../components/HistoricoCompras"
 import api from '../../services/api';
-import * as actions from '../../store/modules/auth/actions';
-import store from '../../store';
+import { useDispatch } from 'react-redux'
+import * as actions from '../../store/modules/cart/actions';
 
  function Produto(props) {
-   //Sets product, name, id, description, quantity, image
+   //Sets product, name, id, description, image
     const [product, setProduct] = useState();
     const [description, setDescription] = useState();
     const [price, setPrice] = useState();
-    const [quantity, setQuantity] = useState();
     const [image, setImage] = useState();
     const [sold, setStatus] = useState();
-    //cart product state to cart
-    const [cart, setCart] = useState(0);
+  
     //validation of cart
-    const [valid, isSaleValid] = useState("");
+    const [cart, setCart] = useState("");
     const  dispatch = useDispatch()
 
     useEffect(() => {
@@ -30,46 +29,33 @@ import store from '../../store';
       const { match } = props;
       const { params } = match;
       const { id } = params;
-
-      const { token } = store.getState().auth
-      console.log(token)
       
       async function fetchProduct(){
         const {data} = await api.get(`/product/${id}`)
-        const {name, description, quantity, price, image, sold} = data[0];
-      //  console.log(data)
+        const {name, description, price, image, sold} = data[0];
         setProduct(name)
         setDescription(description)
         setPrice(price)
-        setQuantity(quantity)
         setImage(image)
         setStatus(sold)
       }
       fetchProduct();
     }, [])
 
-    const addToCart = ()=>{
-      if (cart < quantity){
-        setCart(cart + 1);
-      }        
-    }
-    const postSale =  async ()=>{
+    async function postSale() {
       const { match } = props;
       const { params } = match;
       const { id } = params;
+      const {data} =  await api.get(`/product/${id}`)
+    
       
-      const qtyinStock = quantity - cart; 
-      if(qtyinStock < 0){
-        sold = true;
-        const {data} = await api.patch(`/product/${id}`, { sold: sold})
-        
+      
+      if(sold === true){
+        toast.error("Esse item está indisponível")
       }
-      
-
-      return isSaleValid( cart < 1 ?
-      (toast.error("Voce ainda não adicionou nenhum item no carrinho"))
-      :
-      ( <Redirect to='/voce'/>))
+      else{
+        dispatch(actions.addToCartRequest(data))
+      }
     }
 
     return (
@@ -91,10 +77,6 @@ import store from '../../store';
                       <DetalheProduto />
                       <p className='txt-capitalize' > {description}</p>
                     </ListGroup.Item>
-
-                    <ListGroup.Item>
-                      <p>Quantidade</p> {quantity}
-                    </ListGroup.Item>
                   </ListGroup>
                 </Col>
 
@@ -115,33 +97,10 @@ import store from '../../store';
                           <Row>
                               <Col>Status: </Col>
                               <Col>
-                                {quantity > 0 ? 'Em Estoque' : 'Esgotado'}
+                                {sold == true ? 'Em Estoque' : 'Esgotado'}
                               </Col>
                           </Row>
                         </ListGroup.Item>
-                        <ListGroup.Item>
-                        <Button
-                            id="cart"
-                            className='btn-group'
-                            type='button'
-                            onClick={addToCart}
-                            // disabled={}.countInStock === 0}
-                          >
-                          Adicionar ao Carrinho
-                        </Button>
-
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        <Row>
-                          <Col>
-                          <p>Carrinho:</p>
-                          </Col>
-
-                          <Col>
-                            {cart}
-                          </Col>
-                        </Row>
-                      </ListGroup.Item>
                     </ListGroup>
                   </Card>
                 </Col>
@@ -158,7 +117,7 @@ import store from '../../store';
               </Col>
 
               <Col >
-                <Link onClick={postSale} className='btn btn-success float-sm-right my-3' >
+                <Link onClick={postSale} className='btn btn-success float-sm-right my-3'  >
                 Comprar
                 </Link>
               </Col>

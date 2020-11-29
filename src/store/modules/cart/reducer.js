@@ -6,6 +6,7 @@ export default function cart(state = [], action) {
     switch (action.type) {
         case 'ADD_PRODUCTS_TO_CART_SUCCESS':
             return produce(state, (draft) => {
+                console.log(action)
                 draft.push({...action.products});
                 toast.success('Produto adicionado ao seu carrinho');
             });

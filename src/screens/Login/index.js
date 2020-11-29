@@ -43,7 +43,7 @@ function Inicial() {
           <Col>
           <h2>Faça seu login User</h2>
             <Link onClick={submitUser} className='btn btn-light float-sm-left my-3'>
-                Cadastre-se
+                Login
             </Link>
           </Col> 
         </Row>
