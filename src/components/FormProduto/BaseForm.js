@@ -22,34 +22,42 @@ const BaseForm = ({
         </FormField>
 
         <FormField
-          label="Email"
-          name="email"
+          label="Descrição"
+          name="description"
         >
           <Input
             as={Field}
-            name="email"
+            name="description"
           />
         </FormField>
 
         <FormField
-          label="Senha"
-          name="password"
+          label="Quantidade"
+          name="quantity"
         >
           <Input
             as={Field}
-            name="password"
-            type="password"
+            name="quantity"
           />
         </FormField>
 
         <FormField
-          label="Confirme sua senha"
-          name="passwordConfirmation"
+          label="Preço"
+          name="price"
         >
           <Input
             as={Field}
-            name="passwordConfirmation"
-            type="password"
+            name="price"
+          />
+        </FormField>
+
+        <FormField
+          label="Imagem"
+          name="image"
+        >
+          <Input
+            as={Field}
+            name="image"
           />
         </FormField>
 
