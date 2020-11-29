@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import * as actions from '../../store/modules/auth/actions';
 import { createBrowserHistory } from 'history';
 import store from '../../store';
+//import history from '../../services/history';
 
 function Header () {
   const dispatch = useDispatch();
