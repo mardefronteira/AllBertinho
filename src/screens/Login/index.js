@@ -8,19 +8,14 @@ import * as actions from '../../store/modules/auth/actions';
 
 function Inicial() {
   const dispatch = useDispatch();
-
-  //testando se api ta funcionando
-  useEffect(() => {
-    async function response() {
-      const data = await api.get('/product');
-      console.log(data);
-    }
-
-    response();
-  }, [])
+  
   function submit(e) {
     //para teste
+
+//     const email = 'admin@admin.com';
+
     const email = 'user@user.com';
+
     const password = '123456';
 
     dispatch(actions.signInRequest(email, password));
@@ -34,7 +29,12 @@ function Inicial() {
       <main>
         <h2>Login!</h2>
       </main>
+
       <button onClick={submit}>Testar</button>
+
+      <footer>
+
+      </footer>
     </>
   )
 }

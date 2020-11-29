@@ -39,7 +39,7 @@ function Header () {
           <LinkContainer to="/voce">
             <Nav.Link>Painel Cliente</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/voce-quer/isso">
+          <LinkContainer to="/product">
             <Nav.Link>Detalhes Produto</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/aisdhaoidsh">

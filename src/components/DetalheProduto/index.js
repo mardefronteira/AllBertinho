@@ -5,7 +5,10 @@ import { Helmet } from 'react-helmet';
 function DetalheProduto() {
   return (
     <>
-      <p>Detalhes de produto</p>
+    
+      <p><strong>Detalhes de produto</strong></p>
+
+    
     </>
   )
 }
