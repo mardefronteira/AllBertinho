@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import { Helmet } from 'react-helmet';
 import Header from '../../components/Header'
 import Zap from '../../components/Zap';
 import './styles.css';
+import api from '../../services/api';
 import { Row, Col, Card } from "react-bootstrap";
 
 function Inicial() {
+    const [products, setProduct] = useState([]);
+  
+    useEffect(() => {
+      const fetchProducts = async () => {
+        const res = await api.get("/product");
+        console.log(res.data);
+        setProduct(res.data);
+      };
+  
+      fetchProducts();
+    }, []);
 
   return (
     <>
@@ -53,6 +65,29 @@ function Inicial() {
               </Card>
         </Col>
       </Row>
+      {
+        /***
+         * <Row>
+      {products ? 
+        products.map(p => (
+          <Col sm={12} md={6} lg={4} xl={3}>
+              <Card className="rounded my-3 p-3">
+                <Card.Body>
+                  <Card.Title>
+                      <strong>{p.name}</strong>
+                  </Card.Title>
+                  </Card.Body>
+                  <Card.Img src={p.image} variant="top"></Card.Img>
+                  <Card.Img src={`https://allbertinho.herokuapp.com//qrcode/${p._id}`} variant="top"></Card.Img>
+                </Card>
+          </Col>
+                
+        ))
+      : <p></p>
+      } </Row>  
+         */
+      }
+      
       </main>
     </>
   )
