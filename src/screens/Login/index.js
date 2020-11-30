@@ -1,27 +1,50 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import {  Link } from 'react-router-dom';
-import { Row, Col} from "react-bootstrap";
-import Header from '../../components/Header'
+import Header from '../../components/Header';
+import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import * as actions from '../../store/modules/auth/actions';
 
-function Inicial() {
+import { withFormik } from 'formik';
+import * as Yup from 'yup';
+import BaseForm from '../../components/FormLogin/BaseForm';
+
+
+//formik
+
+function Login() {
   const dispatch = useDispatch();
 
-  function submitAdmin(e) {
-    //para teste
-    const email = 'admin@gmail.com';
-    const password = '12345';
+  function submitUser({email, password}) {
     dispatch(actions.signInRequest(email, password));
   }
-  function submitUser(e) {
-    //para teste
-    const email = 'cliente@gmail.com';
-    const password = '12345';
-    dispatch(actions.signInRequest(email, password));
-  }
+
+  const FormLogin =
+    withFormik ({
+    mapPropsToValues({
+      email,
+      password,
+    }) {
+      return {
+        email: '',
+        password: '',
+      }
+    },
+    validationSchema: Yup.object().shape({
+      email: Yup.string().email('Este não é um email válido.').required('Este campo é obrigatório'),
+      password: Yup.string().required('Este campo é obrigatório'),
+    }),
+    handleSubmit(clientInfo, { resetForm, setErrors, setSubmitting }) {
+
+        submitUser(clientInfo);
+
+        setSubmitting(false);
+        resetForm();
+
+    }//close handleSubmit
+  })(BaseForm);
+
   return (
     <>
       <Helmet>
@@ -30,40 +53,17 @@ function Inicial() {
       <Header />
 
       <main>
-        <Row>
-          <Col>
-          <h2>Faça seu login admin</h2>
-            <Link onClick={submitAdmin} className='btn btn-light float-sm-left my-3'>
-                Login
-            </Link>
-          </Col>     
-        </Row>
-      
-        <Row>
-          <Col>
-          <h2>Faça seu login User</h2>
-            <Link onClick={submitUser} className='btn btn-light float-sm-left my-3'>
-                Login
-            </Link>
-          </Col> 
-        </Row>
-        <Row>
-          <Col>
-          <h2>Não tem conta?</h2>
-            <Link className='btn btn-light float-sm-left my-3'to='/cadastro'>
-                Cadastre-se
-            </Link>
-          </Col> 
-        </Row>
-     
-      
-        
+        <h2>Login!</h2>
+        <FormLogin />
+        <br />
+        <p>Não tem cadastro? <Link to="/cadastro">Crie uma conta.</Link></p>
       </main>
 
-    
-     
+      <footer>
+
+      </footer>
     </>
   )
 }
 
-export default Inicial;
+export default Login;

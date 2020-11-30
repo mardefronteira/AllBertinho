@@ -1,18 +1,19 @@
 import React, {useState, useEffect} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { Alert, Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
+import { Alert, Row, Col, Image, ListGroup, Card } from "react-bootstrap";
 import { toast } from 'react-toastify';
 import '../../index.css';
 import '../../bootstrap.min.css';
 import Header from '../../components/Header';
 import DetalheProduto from "../../components/DetalheProduto";
-import HistoricoCompras from "../../components/HistoricoCompras"
 import api from '../../services/api';
 import { useDispatch } from 'react-redux'
+import { createBrowserHistory } from 'history';
 import * as actions from '../../store/modules/cart/actions';
 
  function Produto(props) {
+
    //Sets product, name, id, description, image
     const [product, setProduct] = useState();
     const [description, setDescription] = useState();
@@ -31,13 +32,18 @@ import * as actions from '../../store/modules/cart/actions';
       const { id } = params;
       
       async function fetchProduct(){
-        const {data} = await api.get(`/product/${id}`)
-        const {name, description, price, image, sold} = data[0];
-        setProduct(name)
-        setDescription(description)
-        setPrice(price)
-        setImage(image)
-        setStatus(sold)
+        try{
+          const {data} = await api.get(`/product/${id}`)
+          const {name, description, price, image, sold} = data[0];
+          setProduct(name)
+          setDescription(description)
+          setPrice(price)
+          setImage(image)
+          setStatus(sold)
+        } catch(err){
+          console.log("O erro foi "+ err)
+        }
+      
       }
       fetchProduct();
     }, [])
@@ -54,8 +60,13 @@ import * as actions from '../../store/modules/cart/actions';
         toast.error("Esse item está indisponível")
       }
       else{
-        dispatch(actions.addToCartRequest(data))
+        const history = createBrowserHistory();
+        dispatch(actions.addToCartRequest(data[0]))
+        setTimeout(() =>  window.location.reload(history.push('/voce/tem')), 2000)
+       
+        
       }
+
     }
 
     return (
@@ -64,7 +75,7 @@ import * as actions from '../../store/modules/cart/actions';
             <title>ALLBERTINHO | Produto </title>
           </Helmet>
           <Header />
-          <main>
+          {product ? (<><main>
       <Image src={image} alt="Não foi possível carregar img" fluid></Image>
               <Row>
                 <Col sm={8}>
@@ -97,7 +108,7 @@ import * as actions from '../../store/modules/cart/actions';
                           <Row>
                               <Col>Status: </Col>
                               <Col>
-                                {sold == true ? 'Em Estoque' : 'Esgotado'}
+                                {sold == false ? 'Em Estoque' : 'Esgotado'}
                               </Col>
                           </Row>
                         </ListGroup.Item>
@@ -106,7 +117,6 @@ import * as actions from '../../store/modules/cart/actions';
                 </Col>
             </Row>
           </main>
-
          
           <footer >
             <Row>
@@ -117,15 +127,17 @@ import * as actions from '../../store/modules/cart/actions';
               </Col>
 
               <Col >
-                <Link onClick={postSale} className='btn btn-success float-sm-right my-3'  >
+                <Link onClick={postSale} className='btn btn-success float-sm-right my-3'   >
                 Comprar
                 </Link>
               </Col>
-
-             
-
             </Row>
-          </footer>
+          </footer> </>) 
+          : 
+          (<Link to='/QuatroZeroQuatro'>
+            Nao foi possivel achar seu produto.
+          </Link>)}
+        
       </>
       )
     }
