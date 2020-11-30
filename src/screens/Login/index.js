@@ -9,9 +9,8 @@ import * as actions from '../../store/modules/auth/actions';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import BaseForm from '../../components/FormLogin/BaseForm';
+import Zap from '../../components/Zap';
 
-
-//formik
 
 function Login() {
   const dispatch = useDispatch();
@@ -51,7 +50,7 @@ function Login() {
         <title>ALLBERTINHO | Login</title>
       </Helmet>
       <Header />
-
+      <Zap />
       <main>
         <h2>Login!</h2>
         <FormLogin />

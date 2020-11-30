@@ -2,7 +2,6 @@ import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import BaseForm from './BaseForm';
 
-// import api from '../../services/api';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../../store/modules/auth/actions';
@@ -24,8 +23,6 @@ const FormikLogin =
   }),
   handleSubmit(clientInfo, { props, resetForm, setErrors, setSubmitting }) {
 
-      // console.log(clientInfo);
-      // props.dispatch(actions.signInRequest(clientInfo));
       props.signInRequest(clientInfo);
 
       setSubmitting(false);

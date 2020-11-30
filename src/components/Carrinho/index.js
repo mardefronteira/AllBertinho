@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import { Nav, Col, Row, ListGroup, Button} from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
-import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
 import store from '../../store';
 import api from '../../services/api';
 import { useDispatch } from 'react-redux'
@@ -16,9 +14,11 @@ function CarrinhoCompras() {
     useEffect(() => {
       const products = store.getState().cart;
       setProduct(products)
+      console.log(products)
+    
       
     }, [])
-    console.log(product)
+    
     const  dispatch = useDispatch()
 
     async function checkout(id){

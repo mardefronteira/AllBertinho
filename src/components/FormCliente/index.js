@@ -1,6 +1,8 @@
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import BaseForm from './BaseForm';
+import { toast } from 'react-toastify';
+
 
 import api from '../../services/api';
 
@@ -25,27 +27,23 @@ const FormCliente =
     passwordConfirmation: Yup.string()
      .oneOf([Yup.ref('password'), null], 'A senha não corresponde à anterior.')
   }),
-  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-
-    if (false /*email já está na db*/){
-      setErrors({ email: 'Email já cadastrado.'})
-    } else {
+  async handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
+    try {
       const thisUser = {
         email: values.email,
         name: values.name,
         password: values.password,
       }
 
-      /*ENVIAR DADOS PRA DB AQUI*/
-      console.log(thisUser)
-      api.post(`/user`, thisUser);
+      const { _id } = await api.post(`/user`, thisUser);
 
       // props.dispatch(addProduct(values));
       // setSubmitting(false);
-
+      
       resetForm();
-      alert("Eba, tudo certo!!");
-
+      toast.success(`Cadastro realizado com sucesso! Faça seu login :)`);
+    }catch(err) {
+      toast.error('Esse email ja existe!');
     }
     setSubmitting(false);
   }//close handleSubmit

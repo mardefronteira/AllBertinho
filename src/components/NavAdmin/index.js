@@ -17,9 +17,6 @@ function NavAdmin (props) {
           <LinkContainer to="/admin/vendas">
             <Nav.Link>Histórico de vendas</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/admin/pendentes">
-            <Nav.Link>Anúncios pendentes</Nav.Link>
-          </LinkContainer>
         </Nav>
       </Container>
     </Navbar>

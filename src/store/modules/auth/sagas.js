@@ -19,9 +19,7 @@ export function* signInRequest({ payload }) {
 
     const { user, token } = response.data;
     const { admin } = user;
-  
     yield put(signInSuccess(token, user));
-    
     api.defaults.headers["x-access-token"] = token;
 
     if (admin === true) {

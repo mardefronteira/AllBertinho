@@ -6,7 +6,7 @@ import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
 import Header from '../../components/Header';
 import NavCliente from '../../components/NavCliente';
 import HistoricoCompras from '../../components/HistoricoCompras';
-import DetalheProduto from '../../components/DetalheProduto';
+import Zap from '../../components/Zap';
 
 function Cliente() {
   const client = {
@@ -18,14 +18,11 @@ function Cliente() {
         <title>ALLBERTINHO | { client.name }</title>
       </Helmet>
       <Header />
+      <Zap />
       <main>
         <NavCliente name={client.name} />
         <section>
-          <Switch>
-            <Route exact path="/voce/tem" component={HistoricoCompras}/>    
-            {/*<Route path="/voce/quer" component={Favoritos} />*/}
-            <Route path="/voce/tem/:id" component={DetalheProduto} />
-          </Switch>
+          <HistoricoCompras />
         </section>
       </main>
     </>

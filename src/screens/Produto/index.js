@@ -11,6 +11,9 @@ import api from '../../services/api';
 import { useDispatch } from 'react-redux'
 import { createBrowserHistory } from 'history';
 import * as actions from '../../store/modules/cart/actions';
+import store from '../../store';
+import Zap from '../../components/Zap';
+
 
  function Produto(props) {
 
@@ -22,8 +25,10 @@ import * as actions from '../../store/modules/cart/actions';
     const [sold, setStatus] = useState();
   
     //validation of cart
-    const [cart, setCart] = useState("");
+  
     const  dispatch = useDispatch()
+    const { signed } = store.getState().auth;
+    console.log(signed)
 
     useEffect(() => {
 
@@ -35,6 +40,7 @@ import * as actions from '../../store/modules/cart/actions';
         try{
           const {data} = await api.get(`/product/${id}`)
           const {name, description, price, image, sold} = data[0];
+          
           setProduct(name)
           setDescription(description)
           setPrice(price)
@@ -75,8 +81,11 @@ import * as actions from '../../store/modules/cart/actions';
             <title>ALLBERTINHO | Produto </title>
           </Helmet>
           <Header />
-          {product ? (<><main>
-      <Image src={image} alt="Não foi possível carregar img" fluid></Image>
+          <Zap/>
+{!signed ?(        
+        <>
+          <main>
+            <Image src={image} alt="Oops" fluid></Image>
               <Row>
                 <Col sm={8}>
                 <ListGroup variant='flush'>
@@ -84,9 +93,8 @@ import * as actions from '../../store/modules/cart/actions';
                       <strong> {product}</strong>
                     </ListGroup.Item>
 
-                    <ListGroup.Item  >
-                      <DetalheProduto />
-                      <p className='txt-capitalize' > {description}</p>
+                    <ListGroup.Item>
+                      {description}
                     </ListGroup.Item>
                   </ListGroup>
                 </Col>
@@ -120,11 +128,17 @@ import * as actions from '../../store/modules/cart/actions';
          
           <footer >
             <Row>
-              <Col>
-                <Link className='btn btn-light my-3' to='/'>
+              { signed ? 
+                (<Col>
+                <Link className='btn btn-light my-3' to='/admin'>
                 Voltar
                 </Link>
-              </Col>
+                </Col> ):
+                (<Col>
+                  <Link className='btn btn-light my-3' to='/'>
+                  Voltar
+                  </Link>
+                </Col> )}
 
               <Col >
                 <Link onClick={postSale} className='btn btn-success float-sm-right my-3'   >

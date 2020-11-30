@@ -16,6 +16,15 @@ function AnunciosAtivos() {
     fetchProducts();
   }, []);
 
+    function deleteProduct(id) {
+      let confirm = window.confirm("Você está prestes a deletar um produto. Tem certeza?");
+      if(confirm) {
+        console.log(`deletando: /product/${id}`);
+        api.delete(`/product/${id}`);
+      }
+      setTimeout(() => window.location.reload(), 1000);
+    }
+
   return (
     <>
       <Row>
@@ -32,6 +41,7 @@ function AnunciosAtivos() {
                   </Card.Title>
                 </Link>
               </Card.Body>
+              <button onClick={() => deleteProduct(p._id)}>Deletar produto</button>
             </Card>
           </Col>
         ))}
