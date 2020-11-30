@@ -27,7 +27,7 @@ function HistoricoVendas() {
   return (
     <>
       <Row>
-        {sales.map(s => (
+        {sales[0] !== undefined ? sales.map(s => (
           <Col key={s.product._id} sm={12} md={6} lg={4} xl={3}>
             <Card className="rounded my-3 p-3">
               <Link to={`/product/${s.product._id}`}>
@@ -43,10 +43,10 @@ function HistoricoVendas() {
               <button onClick={() => returnProduct(s._id)}>Devolver produto</button>
             </Card>
           </Col>
-        ))}
+        )) : <p>Você ainda não realizou nenhuma compra :(</p>}
       </Row>
     </>
-  )
+)
 }
 
 export default HistoricoVendas;
