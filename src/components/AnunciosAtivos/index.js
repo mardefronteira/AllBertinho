@@ -24,6 +24,14 @@ function AnunciosAtivos() {
       setTimeout(() => window.location.reload(), 1000);
     }
 
+    async function getQRCode(id) {
+      await api.get(`/qr/${id}`).then(res => {
+        console.log(res.data.url)
+        let urlQR = res.data.url;
+        window.open(urlQR, "_blank");
+      });
+    }
+
   return (
     <>
       <Row>
@@ -40,6 +48,7 @@ function AnunciosAtivos() {
                   </Card.Title>
                 </Link>
               </Card.Body>
+              <button onClick={() => getQRCode(p._id)}>Abrir QR Code</button>
               <button onClick={() => deleteProduct(p._id)}>Deletar produto</button>
             </Card>
           </Col>
