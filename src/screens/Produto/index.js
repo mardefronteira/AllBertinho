@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Alert, Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import Header from '../../components/Header';
+import store from '../../store';
 import Zap from '../../components/Zap';
 
 import api from '../../services/api';
@@ -19,6 +20,7 @@ import api from '../../services/api';
     const [cart, setCart] = useState(0);
     //validation of cart
     const [valid, isSaleValid] = useState("");
+    const { signed } = store.getState().auth;
 
     useEffect(() => {
 
@@ -128,11 +130,18 @@ import api from '../../services/api';
           <Row>
             <Col>
             <Row>
-              <Col>
-                <Link className='btn btn-light my-3' to='/'>
+              { signed ? 
+                <Col>
+                <Link className='btn btn-light my-3' to='/admin'>
                 Voltar
                 </Link>
-              </Col>
+                </Col> :
+                <Col>
+                  <Link className='btn btn-light my-3' to='/'>
+                  Voltar
+                  </Link>
+                </Col> 
+              }
 
               <Col>
                 <Link onClick={postSale} className='btn btn-success  my-3' >
