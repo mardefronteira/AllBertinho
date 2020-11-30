@@ -1,0 +1,39 @@
+.banner {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 0;
+}
+
+.texto-banner {
+  text-align: center;
+  position: relative;
+  background: #000;
+  font-size: 16vw;
+  color: #fff;
+  padding: 20px;
+  font-family: 'News Cycle', sans-serif;
+  mix-blend-mode: multiply;
+}
+
+.banner {
+    background-image: url("./img/bg-city.png");
+    background-color: #cccccc;
+}
+
+.banner-background {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
