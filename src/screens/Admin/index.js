@@ -22,7 +22,7 @@ function Admin() {
         <NavAdmin />
         <section>
           <Switch>
-            <Route path="/admin/novo-produto" component={FormProduto} />
+            <Route exact path="/admin/novo-produto" component={FormProduto} />
             <Route path="/admin/ativos" component={AnunciosAtivos} />
             <Route path="/admin/vendas" component={HistoricoVendas} />
           </Switch>
