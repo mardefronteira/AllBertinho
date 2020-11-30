@@ -1,7 +1,7 @@
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import BaseForm from './BaseForm';
-
+import { Redirect } from 'react-router-dom';
 import api from '../../services/api';
 
 const FormProduto =
@@ -34,14 +34,14 @@ const FormProduto =
     }
 
     /*ENVIAR DADOS PRA DB AQUI*/
-    const product = await api.post(`/product`, thisProduct);
+    // const product = await
+    api.post(`/product`, thisProduct);
     //urlQrcode = product.data.url;
     //console.log(urlQrcode);
+    alert("Produto cadastrado! Você pode gerenciar seu anúncio ou ver seu QR Code na aba 'Anúncios Ativos'.");
     resetForm();
-    alert("Eba, tudo certo!!");
-    
     setSubmitting(false);
-    
+
   }//close handleSubmit
 })(BaseForm);
 
