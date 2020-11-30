@@ -34,10 +34,7 @@ const FormProduto =
     }
 
     /*ENVIAR DADOS PRA DB AQUI*/
-    // const product = await
     api.post(`/product`, thisProduct);
-    //urlQrcode = product.data.url;
-    //console.log(urlQrcode);
     alert("Produto cadastrado! Você pode gerenciar seu anúncio ou ver seu QR Code na aba 'Anúncios Ativos'.");
     resetForm();
     setSubmitting(false);

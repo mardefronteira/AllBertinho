@@ -16,7 +16,6 @@ export default function cart(state = [], action) {
 
                 if (productsIndex >= 0) {
                     draft.splice(productsIndex, 1);
-                    toast.success('Produto retirado do carrinho');
                 }
             });
 

@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import FormField from '../FormField';
 import { Input } from '../FormField/style.js';
 import Download from './Download';
+import { Button } from 'react-bootstrap';
 
 const BaseForm = ({
   values,
@@ -53,7 +54,8 @@ const BaseForm = ({
           />
         </FormField>
 
-        <button type="submit" disabled={isSubmitting}>Cadastrar</button>
+        <Button variant="outline-dark" type="submit" disabled={isSubmitting}>Cadastrar</Button>
+
          {/**<Download url={urlQrcode} />*/}
       </Form>
     </>
