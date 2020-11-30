@@ -85,7 +85,7 @@ import Zap from '../../components/Zap';
 {!signed ?(        
         <>
           <main>
-            <Image src={image} alt="Oops" fluid></Image>
+            <Image src={image} style={{ width: 200, height: 200 }} alt="Oops" fluid></Image>
               <Row>
                 <Col sm={8}>
                 <ListGroup variant='flush'>
