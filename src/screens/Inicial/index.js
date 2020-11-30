@@ -26,7 +26,7 @@ function Inicial() {
       </Helmet>
       <Header />
       <section className="banner">
-        <h2 className="texto-banner">AllBERTINHO</h2>
+        <h2 className="texto-banner">ALLBERTINHO</h2>
       </section>
       <Zap />
       <main>

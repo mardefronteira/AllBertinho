@@ -37,9 +37,14 @@ footer {
   margin: 5px 8px;
  }
 
-.title-box{
-  font-size: 17px; 
+.card-landing {
+  min-height: 50vh;
 }
+
+.title-box{
+  font-size: 17px;
+}
+
 .txt-capitalize{
   display: inline-block;
 
@@ -53,4 +58,3 @@ label {
   /* align-content: space-between;  */
   width:40vw;
 }
-
