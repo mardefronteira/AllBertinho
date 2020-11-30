@@ -2,16 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import api from "../../services/api";
+import CarrinhoCompras from "../Carrinho"
 
 function HistoricoVendas() {
   const [sales, setSale] = useState([]);
 
   useEffect(() => {
-    const fetchSales = async () => {
-      const res = await api.get("/sale");
-      console.log(res.data);
-      setSale(res.data);
-    };
+      const fetchSales = async () => {
+        const res = await api.get("/sale");
+        console.log(res.data);
+        setSale(res.data);
+      };
+    
+    
 
     fetchSales();
   }, []);
@@ -27,6 +30,10 @@ function HistoricoVendas() {
   return (
     <>
       <Row>
+        <Col>
+        <CarrinhoCompras />
+        </Col>
+       
         {sales[0] !== undefined ? sales.map(s => (
           <Col key={s.product._id} sm={12} md={6} lg={4} xl={3}>
             <Card className="rounded my-3 p-3">
