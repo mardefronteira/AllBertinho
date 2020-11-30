@@ -11,7 +11,7 @@ export const ZapZap = styled.a`
 
 function Zap () {
     return (
-      <ZapZap href="https://api.whatsapp.com/send?phone=5541999995556" target="_blank">
+      <ZapZap href="https://api.whatsapp.com/send?phone=5541999995556&text=Bom%20dia!%20Gostaria%20de%20informações%20sobre%20" target="_blank">
       <img src="http://cdn.onlinewebfonts.com/svg/img_5666.png" width="50" height="50" />
       </ZapZap>
     )
