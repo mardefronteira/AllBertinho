@@ -23,7 +23,9 @@ h1 {
 h2 {
   color: #222;
 }
-
+h3{
+  text-align: center;
+}
 section {
   margin: 12vh 7vw;
 }
@@ -31,11 +33,12 @@ section {
 footer {
   margin: 5vh 12vw;
 }
+.card-margin{
+  margin: 5px 8px;
+ }
 
 .title-box{
-  font-size: 20px;
-  text-transform: bold;
-
+  font-size: 17px; 
 }
 .txt-capitalize{
   display: inline-block;

@@ -6,7 +6,6 @@ import { toast } from 'react-toastify';
 import '../../index.css';
 import '../../bootstrap.min.css';
 import Header from '../../components/Header';
-import DetalheProduto from "../../components/DetalheProduto";
 import api from '../../services/api';
 import { useDispatch } from 'react-redux'
 import { createBrowserHistory } from 'history';
@@ -59,20 +58,10 @@ import Zap from '../../components/Zap';
       const { params } = match;
       const { id } = params;
       const {data} =  await api.get(`/product/${id}`)
-    
-      
-      
-      if(sold === true){
-        toast.error("Esse item está indisponível")
-      }
-      else{
+
         const history = createBrowserHistory();
         dispatch(actions.addToCartRequest(data[0]))
-        setTimeout(() =>  window.location.reload(history.push('/voce/tem')), 2000)
-       
-        
-      }
-
+        setTimeout(() =>  window.location.reload(history.push('/voce/tem')), 2000)   
     }
 
     return (
@@ -82,7 +71,7 @@ import Zap from '../../components/Zap';
           </Helmet>
           <Header />
           <Zap/>
-{!signed ?(        
+        { product ?(        
         <>
           <main>
             <Image src={image} style={{ width: 200, height: 200 }} alt="Oops" fluid></Image>
@@ -93,7 +82,7 @@ import Zap from '../../components/Zap';
                       <strong> {product}</strong>
                     </ListGroup.Item>
 
-                    <ListGroup.Item>
+                    <ListGroup.Item className="text-capitalize">
                       {description}
                     </ListGroup.Item>
                   </ListGroup>
@@ -116,7 +105,7 @@ import Zap from '../../components/Zap';
                           <Row>
                               <Col>Status: </Col>
                               <Col>
-                                {sold == false ? 'Em Estoque' : 'Esgotado'}
+                                {sold ? 'Esgotado':'Em Estoque'  }
                               </Col>
                           </Row>
                         </ListGroup.Item>
@@ -148,9 +137,12 @@ import Zap from '../../components/Zap';
             </Row>
           </footer> </>) 
           : 
-          (<Link to='/QuatroZeroQuatro'>
-            Nao foi possivel achar seu produto.
-          </Link>)}
+          (setTimeout(() => {
+            <Link to='/QuatroZeroQuatro'>
+            <h2>Nao achamos seu produto, volte ao inicio</h2>
+            </Link>
+          }, 3000))}
+
         
       </>
       )
