@@ -40,14 +40,19 @@ footer {
   padding: 2vh 1vw;
  }
 
+.card-landing {
+  min-height: 50vh;
+}
+
 .title-box{
-  font-size: 17px; 
+  font-size: 17px;
 }
 .box-cart{
   font-size: 17px; 
   margin: 17px 7px;
   text-align: center;
 }
+
 .txt-capitalize{
   display: inline-block;
 
@@ -61,4 +66,3 @@ label {
   /* align-content: space-between;  */
   width:40vw;
 }
-
