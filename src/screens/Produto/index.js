@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet';
 import { Alert, Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import Header from '../../components/Header';
 
-import DetalheProduto from "../../components/DetalheProduto";
 import api from '../../services/api';
 
 
@@ -60,7 +59,7 @@ import api from '../../services/api';
           </Helmet>
           <Header />
           <main>
-      <Image src={image} alt="Oops" fluid></Image>
+            <Image src={image} alt="Oops" fluid></Image>
               <Row>
                 <Col sm={8}>
                 <ListGroup variant='flush'>
@@ -69,7 +68,6 @@ import api from '../../services/api';
                     </ListGroup.Item>
 
                     <ListGroup.Item>
-                      <DetalheProduto/>
                       {description}
                     </ListGroup.Item>
                   </ListGroup>

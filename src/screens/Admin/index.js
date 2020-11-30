@@ -9,8 +9,6 @@ import NavAdmin from '../../components/NavAdmin';
 import FormProduto from '../../components/FormProduto';
 import HistoricoVendas from '../../components/HistoricoVendas';
 import AnunciosAtivos from '../../components/AnunciosAtivos';
-import AnunciosPendentes from '../../components/AnunciosPendentes';
-import DetalheProduto from '../../components/DetalheProduto';
 
 function Admin() {
 
@@ -25,9 +23,8 @@ function Admin() {
         <section>
           <Switch>
             <Route path="/admin/novo-produto" component={FormProduto} />
-            <Route path="/admin/vendas" component={HistoricoVendas} />
             <Route path="/admin/ativos" component={AnunciosAtivos} />
-            <Route path="/admin/pendentes" component={AnunciosPendentes} />
+            <Route path="/admin/vendas" component={HistoricoVendas} />
           </Switch>
         </section>
       </main>
