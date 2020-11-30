@@ -1,6 +1,8 @@
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import BaseForm from './BaseForm';
+import { toast } from 'react-toastify';
+
 
 import api from '../../services/api';
 
@@ -44,8 +46,8 @@ const FormCliente =
       // setSubmitting(false);
 
       resetForm();
-      alert("Eba, tudo certo!!");
-
+      toast.success('Cadastro realizado com sucesso! Faça seu login');
+      
     }
     setSubmitting(false);
   }//close handleSubmit
