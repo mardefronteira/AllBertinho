@@ -22,9 +22,9 @@ import Zap from '../../components/Zap';
     const [price, setPrice] = useState();
     const [image, setImage] = useState();
     const [sold, setStatus] = useState();
-  
+
     //validation of cart
-  
+
     const  dispatch = useDispatch()
     const { signed } = store.getState().auth;
     console.log(signed)
@@ -34,12 +34,12 @@ import Zap from '../../components/Zap';
       const { match } = props;
       const { params } = match;
       const { id } = params;
-      
+
       async function fetchProduct(){
         try{
           const {data} = await api.get(`/product/${id}`)
           const {name, description, price, image, sold} = data[0];
-          
+
           setProduct(name)
           setDescription(description)
           setPrice(price)
@@ -48,7 +48,7 @@ import Zap from '../../components/Zap';
         } catch(err){
           console.log("O erro foi "+ err)
         }
-      
+
       }
       fetchProduct();
     }, [])
@@ -60,9 +60,9 @@ import Zap from '../../components/Zap';
       const {data} =  await api.get(`/product/${id}`)
 
         const history = createBrowserHistory();
-        dispatch(actions.addToCartRequest(data[0]))
         toast.success("Adicionado ao carrinho!")
-        setTimeout(() =>  window.location.reload(history.push('/voce/tem')), 2500)   
+        dispatch(actions.addToCartRequest(data[0]))
+        setTimeout(() =>  window.location.reload(history.push('/voce')), 2000)
     }
 
     return (
@@ -72,7 +72,7 @@ import Zap from '../../components/Zap';
           </Helmet>
           <Header />
           <Zap/>
-        { product ?(        
+        { product ?(
         <>
           <main>
             <Image src={image} style={{ width: 200, height: 200 }} alt="Oops" fluid></Image>
@@ -115,10 +115,10 @@ import Zap from '../../components/Zap';
                 </Col>
             </Row>
           </main>
-         
+
           <footer >
             <Row>
-              { signed ? 
+              { signed ?
                 (<Col>
                 <Link className='btn btn-light my-3' to='/admin'>
                 Voltar
@@ -136,15 +136,15 @@ import Zap from '../../components/Zap';
                 </Link>
               </Col>
             </Row>
-          </footer> </>) 
-          : 
+          </footer> </>)
+          :
           (setTimeout(() => {
             <Link to='/QuatroZeroQuatro'>
             <h2>Nao achamos seu produto, volte ao inicio</h2>
             </Link>
           }, 3000))}
 
-        
+
       </>
       )
     }

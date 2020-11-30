@@ -18,9 +18,7 @@ export default function Routes() {
     <BrowserRouter>
     <Switch>
       <RouterPrivate path="/cadastro" component={CadastroCliente} />
-
       
-
       <RouterPrivate path="/login" component={Login} />
       <RouterPrivate isPrivate path="/voce" component={() => <Cliente name="Elisberto" />} />
 

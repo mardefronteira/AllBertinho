@@ -43,6 +43,11 @@ footer {
 .title-box{
   font-size: 17px; 
 }
+.box-cart{
+  font-size: 17px; 
+  margin: 17px 7px;
+  text-align: center;
+}
 .txt-capitalize{
   display: inline-block;
 
@@ -56,3 +61,4 @@ label {
   /* align-content: space-between;  */
   width:40vw;
 }
+

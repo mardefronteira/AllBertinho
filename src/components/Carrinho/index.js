@@ -42,33 +42,32 @@ function CarrinhoCompras() {
     return (
       <>
         
-        <Col variant="flush" >
-        <LinkContainer to='/voce/tem'>
-                <Nav.Link>
-                  <h3 className='fas fa-shopping-cart mx-1'>Meu Carrinho</h3>
-                </Nav.Link>
-        </LinkContainer>
-        {product.map((p) => (
-        
-          <Card key={p._id} className="card-margin"  bg="light" variant="light"  sm={12} md={6} lg={4} xl={3}>
-            <Row >       
-                  <Col>  
-                  <Card.Title> <p className="title-box card-margin"><strong>Nome do produto</strong></p></Card.Title>  
-                     <Card.Subtitle><p>{p.name}</p></Card.Subtitle>
-                  </Col>
-                  <Col>
-                  <Card.Title> <p className="title-box card-margin"><strong>ID</strong></p></Card.Title>
-                      <Card.Subtitle> <p>{p._id}</p></Card.Subtitle> 
-                  </Col>
-                  <Col>
-                  <Button variant="info" className="button-margin" onClick={()=>{checkout(p._id)}}> Finalizar </Button>
-                  <Button variant="danger" className="button-margin" onClick={()=>{remove(p._id)}}> Remover </Button>
-                  </Col>
-            </Row>
-          </Card>
-            ))}
-         </Col>
-      </>
+    <Col variant="flush" >
+    <Row>
+        <Col>
+        <h3 className='fas fa-shopping-cart mx-1'>Meu Carrinho</h3>
+        </Col>
+    </Row>
+    {product.map((p) => (
+      <Card key={p._id} className="card-margin"  bg="light" variant="light"  sm={12} md={6} lg={4} xl={3}>
+        <Row >       
+          <Col>  
+            <Card.Title> <p className="title-box card-margin"><strong>Nome do produto</strong></p></Card.Title>  
+            <Card.Subtitle><p>{p.name}</p></Card.Subtitle>
+          </Col>
+          <Col>
+            <Card.Title> <p className="title-box card-margin"><strong>ID</strong></p></Card.Title>
+            <Card.Subtitle> <p>{p._id}</p></Card.Subtitle> 
+          </Col>
+          <Col>
+            <Button variant="info" className="button-margin" onClick={()=>{checkout(p._id)}}> Finalizar </Button>
+            <Button variant="danger" className="button-margin" onClick={()=>{remove(p._id)}}> Remover </Button>
+          </Col>
+        </Row>
+      </Card>
+        ))}
+      </Col>
+  </>
     )
   }
   

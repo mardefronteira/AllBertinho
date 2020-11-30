@@ -49,11 +49,7 @@ function HistoricoVendas() {
           </Col>
         )) : 
         (
-          
-          <Link>
-          <br/>
-          <h2 className='title-box'>Você ainda não adiquiriu nenhum produto. Lembre-se de finalizar sua compra =)</h2>
-          </Link>
+          <h2 className='title-box box-cart'>Você ainda não adiquiriu nenhum produto. Lembre-se de finalizar sua compra =)</h2>
         )}
       </Row>
     </>
