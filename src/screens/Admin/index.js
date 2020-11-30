@@ -23,8 +23,8 @@ function Admin() {
         <section>
           <Switch>
             <Route path="/admin/novo-produto" component={FormProduto} />
-            <Route path="/admin/vendas" component={HistoricoVendas} />
             <Route path="/admin/ativos" component={AnunciosAtivos} />
+            <Route path="/admin/vendas" component={HistoricoVendas} />
           </Switch>
         </section>
       </main>

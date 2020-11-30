@@ -59,7 +59,7 @@ import api from '../../services/api';
           </Helmet>
           <Header />
           <main>
-      <Image src={image} alt="Oops" fluid></Image>
+            <Image src={image} alt="Oops" fluid></Image>
               <Row>
                 <Col sm={8}>
                 <ListGroup variant='flush'>

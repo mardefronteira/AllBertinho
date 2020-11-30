@@ -20,9 +20,7 @@ function Cliente() {
       <main>
         <NavCliente name={client.name} />
         <section>
-          <Switch>
-            <Route exact path="/voce/tem" component={HistoricoCompras} />
-          </Switch>
+          <HistoricoCompras />
         </section>
       </main>
     </>

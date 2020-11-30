@@ -28,12 +28,6 @@ function Header () {
           <h1>ALLBERTINHO</h1>
         </LinkContainer>
         <Nav>
-          <LinkContainer to="/admin">
-            <Nav.Link>Painel Admin</Nav.Link>
-          </LinkContainer>
-          <LinkContainer to="/voce">
-            <Nav.Link>Painel Cliente</Nav.Link>
-          </LinkContainer>
           <LinkContainer to="/product/5fc4259a4f542400176bf749">
             <Nav.Link>Detalhes Produto</Nav.Link>
           </LinkContainer>
