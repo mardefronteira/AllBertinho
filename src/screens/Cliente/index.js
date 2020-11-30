@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
@@ -8,14 +8,20 @@ import NavCliente from '../../components/NavCliente';
 import HistoricoCompras from '../../components/HistoricoCompras';
 import Zap from '../../components/Zap';
 
+import store from '../../store';
+
 function Cliente() {
-  const client = {
-    name: 'Elisberto',
-  }
+  const [client, setClient] = useState([]);
+
+  useEffect(() => {
+    const clients = store.getState().auth;
+    setClient(clients);
+  }, [])
+
   return (
     <>
       <Helmet>
-        <title>ALLBERTINHO | { client.name }</title>
+        <title>ALLBERTINHO | { client.name || '' }</title>
       </Helmet>
       <Header />
       <Zap />
