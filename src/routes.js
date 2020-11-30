@@ -18,17 +18,13 @@ export default function Routes() {
     <BrowserRouter>
     <Switch>
       <RouterPrivate path="/cadastro" component={CadastroCliente} />
-
-      <RouterPrivate path="/product/:id" component={Produto} />
-
-//       <Route path="/voce-quer/:id" component={Produto} />
-
       <RouterPrivate path="/login" component={Login} />
-      <RouterPrivate path="/" component={Inicial} exact />
-
-      <RouterAdmin isAdmin path="/admin" component={Admin} />
       <RouterPrivate isPrivate path="/voce" component={() => <Cliente name="Elisberto" />} />
-      
+
+      <Route path="/product/:id" component={Produto} />
+      <Route path="/" component={Inicial} exact />
+
+      <RouterAdmin isAdmin path="/admin" component={Admin} />      
       <Route component={QuatroZeroQuatro} />
     </Switch>
   </BrowserRouter>
