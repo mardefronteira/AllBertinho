@@ -4,9 +4,9 @@ import { Link, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { Alert, Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import Header from '../../components/Header';
+import Zap from '../../components/Zap';
 
 import api from '../../services/api';
-
 
  function Produto(props) {
    //Sets product, name, id, description, quantity, image
@@ -58,6 +58,7 @@ import api from '../../services/api';
             <title>ALLBERTINHO | Produto </title>
           </Helmet>
           <Header />
+          <Zap/>
           <main>
             <Image src={image} alt="Oops" fluid></Image>
               <Row>
