@@ -25,8 +25,7 @@ const FormProduto =
     price: Yup.number('Este não é um número válido.').required('Este campo é obrigatório.'),
     image: Yup.string().url('Essa não é uma url válida.').required('Este campo é obrigatório.'),
   }),
-  handleSubmit(values, { resetForm, setErrors, setSubmitting }) {
-
+  async handleSubmit(values, { resetForm, setErrors, setSubmitting, urlQrcode }) {
     const thisProduct = {
       name: values.name,
       description: values.description,
@@ -35,13 +34,14 @@ const FormProduto =
     }
 
     /*ENVIAR DADOS PRA DB AQUI*/
-    console.log(thisProduct)
-    api.post(`/product`, thisProduct);
-
+    const product = await api.post(`/product`, thisProduct);
+    //urlQrcode = product.data.url;
+    //console.log(urlQrcode);
     resetForm();
     alert("Eba, tudo certo!!");
-
+    
     setSubmitting(false);
+    
   }//close handleSubmit
 })(BaseForm);
 
