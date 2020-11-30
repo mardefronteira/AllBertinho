@@ -94,7 +94,7 @@ function Inicial() {
                   <strong>Box Naruto</strong>
                 </Card.Title>
                 </Card.Body>
-                <Card.Img src="https://lojasaraiva.vteximg.com.br/arquivos/ids/12108184/1003418451.jpg?v=637142245065270000" variant="top"></Card.Img>
+                <Card.Img src="https://images-shoptime.b2w.io/produtos/01/00/img/1514787/6/1514787621_2SZ.jpg" variant="top"></Card.Img>
                 <Card.Img src="https://i.ibb.co/4PJJGFy/naruto.png" variant="top"></Card.Img>
               </Card>
         </Col>        
