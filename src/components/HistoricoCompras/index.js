@@ -30,7 +30,7 @@ function HistoricoVendas() {
   return (
     <>
       <Row>
-        
+      <CarrinhoCompras/>
         {sales[0] !== undefined ? sales.map(s => (
           <Col key={s.product._id} sm={12} md={6} lg={4} xl={3}>
             <Card className="rounded my-3 p-3">
@@ -47,17 +47,11 @@ function HistoricoVendas() {
               <button onClick={() => returnProduct(s._id)}>Devolver produto</button>
             </Card>
           </Col>
-        )) : (
-
-      
-          
-          
-        <>
-        {sales ? <CarrinhoCompras/>:
+        )) : 
+        (
           <Link>
-          <h2 className='title-box'>Não conseguimos achar seu produto, volte ao inicio.</h2>
-          </Link>}
-        </> 
+          <h2 className='title-box'>Você ainda não adiquiriu nenhum produto. Lembre-se de finalizar sua compra =)</h2>
+          </Link>
         )}
       </Row>
     </>

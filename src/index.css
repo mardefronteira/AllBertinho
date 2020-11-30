@@ -33,6 +33,9 @@ section {
 footer {
   margin: 5vh 12vw;
 }
+.button-margin{
+  margin: 8px;
+}
 .card-margin{
   margin: 5px 8px;
  }
