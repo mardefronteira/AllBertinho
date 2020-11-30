@@ -61,7 +61,7 @@ import Zap from '../../components/Zap';
 
         const history = createBrowserHistory();
         dispatch(actions.addToCartRequest(data[0]))
-        setTimeout(() =>  window.location.reload(history.push('/voce/tem')), 2000)
+        setTimeout(() =>  window.location.reload(history.push('/voce')), 2000)
     }
 
     return (
