@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Row, Col, Card } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import api from "../../services/api";
+import { Button } from "react-bootstrap";
 
 function AnunciosAtivos() {
   const [products, setProduct] = useState([]);
@@ -48,8 +49,8 @@ function AnunciosAtivos() {
                   </Card.Title>
                 </Link>
               </Card.Body>
-              <button onClick={() => getQRCode(p._id)}>Abrir QR Code</button>
-              <button onClick={() => deleteProduct(p._id)}>Deletar produto</button>
+              <Button variant="outline-dark" style={{marginBottom: .5+'em'}} onClick={() => getQRCode(p._id)}>Abrir QR Code</Button>
+              <Button variant="outline-secondary" onClick={() => deleteProduct(p._id)}>Deletar produto</Button>
             </Card>
           </Col>
         ))}

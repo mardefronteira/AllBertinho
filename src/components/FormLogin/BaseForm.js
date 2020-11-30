@@ -2,6 +2,8 @@ import React from 'react';
 import { Form, Field } from 'formik';
 import FormField from '../FormField';
 import { Input } from '../FormField/style.js';
+import { Button } from 'react-bootstrap';
+
 
 const FormLogin = ({
   values,
@@ -31,7 +33,7 @@ const FormLogin = ({
           />
         </FormField>
 
-        <button type="submit" disabled={isSubmitting}>Entrar</button>
+        <Button variant="outline-dark" type="submit" disabled={isSubmitting}>Entrar</Button>
       </Form>
     </>
   );
