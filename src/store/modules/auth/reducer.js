@@ -22,6 +22,9 @@ export default function auth(state = STATE_INICIAL, action) {
       return produce(state, draft => {
         draft.token = STATE_INICIAL.token;
         draft.signed = false;
+        draft.user = null;
+        draft.id = null;
+        draft.name = null;
       });
     default:
       return state;
