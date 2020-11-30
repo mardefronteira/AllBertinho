@@ -90,27 +90,28 @@ import Zap from '../../components/Zap';
 
 
                 <Col sm={4}>
-                    <Card>
-                      <ListGroup variant='flush'  >
-                        <ListGroup.Item >
-                          <Row>
-                            <Col>Preço: </Col>
-                            <Col>
-                              <strong>R$ {price}</strong>
-                            </Col>
-                          </Row>
-                        </ListGroup.Item>
 
-                        <ListGroup.Item>
-                          <Row>
-                              <Col>Status: </Col>
-                              <Col>
-                                {sold ? 'Esgotado':'Em Estoque'  }
-                              </Col>
-                          </Row>
-                        </ListGroup.Item>
-                    </ListGroup>
-                  </Card>
+                  <ListGroup variant='flush'  >
+                    <ListGroup.Item ></ListGroup.Item >
+                    <ListGroup.Item >
+                      <Row>
+                        <Col>Preço: </Col>
+                        <Col>
+                          <strong>R$ {price}</strong>
+                        </Col>
+                      </Row>
+                    </ListGroup.Item>
+
+                    <ListGroup.Item>
+                      <Row>
+                          <Col>Status: </Col>
+                          <Col>
+                            {sold ? 'Esgotado':'Em Estoque'  }
+                          </Col>
+                      </Row>
+                    </ListGroup.Item>
+                </ListGroup>
+
                 </Col>
             </Row>
           </main>

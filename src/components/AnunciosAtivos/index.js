@@ -39,14 +39,14 @@ function AnunciosAtivos() {
         {products.map(p => (
           <Col key={p._id} sm={12} md={6} lg={4} xl={3}>
             <Card className="rounded my-3 p-3">
-              <Link to={`/product/${p._id}`}>
-                <Card.Img src={p.image} variant="top"></Card.Img>
-              </Link>
               <Card.Body>
                 <Link>
                   <Card.Title>
                     <strong>{p.name}</strong>
                   </Card.Title>
+                  <Link to={`/product/${p._id}`}>
+                    <Card.Img src={p.image} variant="top"></Card.Img>
+                  </Link>
                 </Link>
               </Card.Body>
               <Button variant="outline-dark" style={{marginBottom: .5+'em'}} onClick={() => getQRCode(p._id)}>Abrir QR Code</Button>

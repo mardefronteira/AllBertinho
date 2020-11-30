@@ -31,7 +31,7 @@ function Inicial() {
       <Zap />
       <main>
       <Row>
-      <Col sm={12} md={6} lg={4} xl={3}>
+      <Col sm={12} md={6} lg={4} xl={4}>
             <Card className="rounded my-3 p-3">
                 <Card.Body>
                 <Card.Title>
@@ -42,7 +42,7 @@ function Inicial() {
                 <Card.Img src="https://i.ibb.co/ynp94QL/cone.png" variant="top"></Card.Img>
               </Card>
         </Col>
-        <Col sm={12} md={6} lg={4} xl={3}>
+        <Col sm={12} md={6} lg={4} xl={4}>
             <Card className="rounded my-3 p-3">
                 <Card.Body>
                 <Card.Title>
@@ -53,7 +53,7 @@ function Inicial() {
                 <Card.Img src="https://i.ibb.co/PhmqDP2/mesa.png" variant="top"></Card.Img>
               </Card>
         </Col>
-        <Col sm={12} md={6} lg={4} xl={3}>
+        <Col sm={12} md={6} lg={4} xl={4}>
           <Card className="rounded my-3 p-3">
             <Card.Body>
               <Card.Title>
@@ -64,7 +64,7 @@ function Inicial() {
             <Card.Img src="https://i.ibb.co/pxgVdb6/fusca-Azul.png" variant="top"></Card.Img>
           </Card>
         </Col>
-        <Col sm={12} md={6} lg={4} xl={3}>
+        <Col sm={12} md={6} lg={4} xl={4}>
             <Card className="rounded my-3 p-3">
               <Card.Body>
                 <Card.Title>
@@ -75,7 +75,7 @@ function Inicial() {
                 <Card.Img src="https://i.ibb.co/nf0HsNv/bola-Quadrada.png" variant="top"></Card.Img>
             </Card>
         </Col>
-        <Col sm={12} md={6} lg={4} xl={3}>
+        <Col sm={12} md={6} lg={4} xl={4}>
           <Card className="rounded my-3 p-3">
             <Card.Body>
               <Card.Title>
@@ -86,8 +86,8 @@ function Inicial() {
             <Card.Img src="https://i.ibb.co/4PJJGFy/naruto.png" variant="top"></Card.Img>
           </Card>
         </Col>
-        <Col sm={12} md={6} lg={4} xl={3}>
-            <Card className="rounded my-3 p-3">
+        <Col sm={12} md={6} lg={4} xl={4}>
+            <Card className="rounded my-3 mx-3 p-3">
                 <Card.Body>
                 <Card.Title>
                   <strong>Blusinha QRCODE</strong>
