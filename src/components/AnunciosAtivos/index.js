@@ -16,7 +16,7 @@ function AnunciosAtivos() {
     fetchProducts();
   }, []);
 
-    async function deleteProduct(id) {
+    function deleteProduct(id) {
       let confirm = window.confirm("Você está prestes a deletar um produto. Tem certeza?");
       if(confirm) {
         console.log(`deletando: /product/${id}`);

@@ -16,6 +16,14 @@ function HistoricoVendas() {
     fetchSales();
   }, []);
 
+  function returnProduct(id) {
+    let confirm = window.confirm("Ah, que pena! Mas tudo bem. Esperamos ter você de volta em compras futuras. Para devolver o seu produto, é só deixá-lo de volta onde o encontrou, e confirmar aqui embaixo quando o fizer. Caso você não tenha como retornar ao local, envie o produto para o endereço: Rua Linda, 293. Ao receber seu produto, extornaremos o valor. Confirme abaixo se devolveu o produto ao local:");
+    if(confirm) {
+      api.delete(`/sale/${id}`);
+    }
+    setTimeout(() => window.location.reload(), 1000);
+  }
+
   return (
     <>
       <Row>
@@ -32,6 +40,7 @@ function HistoricoVendas() {
                   </Card.Title>
                 </Link>
               </Card.Body>
+              <button onClick={() => returnProduct(s._id)}>Devolver produto</button>
             </Card>
           </Col>
         ))}
