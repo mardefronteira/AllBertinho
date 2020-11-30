@@ -1,10 +1,10 @@
 import React from 'react';
 import { Navbar, Nav, FormControl, Button, Form, Container } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-
 import { useDispatch } from 'react-redux';
 import * as actions from '../../store/modules/auth/actions';
 import { createBrowserHistory } from 'history';
+import CarrinhoCompras from '../Carrinho'
 import store from '../../store';
 //import history from '../../services/history';
 

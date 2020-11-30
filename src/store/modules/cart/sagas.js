@@ -5,14 +5,14 @@ import { toast } from 'react-toastify';
 import * as actions from './actions';
 
 function* addToCart({ products }) {
-    const productExist = yield select((state) =>
-        state.cart.find((p) => p.id === products.id)
-    );
+    // const productExist = yield select((state) =>
+    //     state.cart.find((p) => p.id === products.id)
+    // );
 
-    if (productExist) {
-        toast.error('Produto ja existe no carrinho');
-        return;
-    }
+    // if (productExist) {
+    //     toast.error('Produto ja existe no carrinho');
+    //     return;
+    // }
 
     yield put(actions.addToCartSuccess(products));
 }

@@ -1,57 +1,78 @@
-
 import React, {useState, useEffect} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { Alert, Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
+import { Alert, Row, Col, Image, ListGroup, Card } from "react-bootstrap";
+import { toast } from 'react-toastify';
+import '../../index.css';
+import '../../bootstrap.min.css';
 import Header from '../../components/Header';
+import DetalheProduto from "../../components/DetalheProduto";
+import api from '../../services/api';
+import { useDispatch } from 'react-redux'
+import { createBrowserHistory } from 'history';
+import * as actions from '../../store/modules/cart/actions';
 import store from '../../store';
 import Zap from '../../components/Zap';
 
-import api from '../../services/api';
 
  function Produto(props) {
-   //Sets product, name, id, description, quantity, image
+
+   //Sets product, name, id, description, image
     const [product, setProduct] = useState();
     const [description, setDescription] = useState();
     const [price, setPrice] = useState();
-    const [quantity, setQuantity] = useState();
     const [image, setImage] = useState();
-    //cart product state to cart
-    const [cart, setCart] = useState(0);
+    const [sold, setStatus] = useState();
+  
     //validation of cart
-    const [valid, isSaleValid] = useState("");
+  
+    const  dispatch = useDispatch()
     const { signed } = store.getState().auth;
+    console.log(signed)
 
     useEffect(() => {
 
       const { match } = props;
       const { params } = match;
       const { id } = params;
-
-
+      
       async function fetchProduct(){
-        const {data} = await api.get(`/product/${id}`)
-        const {name, description, quantity, price, image} = data[0];
-
-        setProduct(name);
-        setDescription(description);
-        setPrice(price);
-        setQuantity(quantity)
-        setImage(image);
+        try{
+          const {data} = await api.get(`/product/${id}`)
+          const {name, description, price, image, sold} = data[0];
+          
+          setProduct(name)
+          setDescription(description)
+          setPrice(price)
+          setImage(image)
+          setStatus(sold)
+        } catch(err){
+          console.log("O erro foi "+ err)
+        }
+      
       }
       fetchProduct();
     }, [])
 
-    const addToCart = ()=>{
-        setCart(cart + 1);
-    }
+    async function postSale() {
+      const { match } = props;
+      const { params } = match;
+      const { id } = params;
+      const {data} =  await api.get(`/product/${id}`)
+    
+      
+      
+      if(sold === true){
+        toast.error("Esse item está indisponível")
+      }
+      else{
+        const history = createBrowserHistory();
+        dispatch(actions.addToCartRequest(data[0]))
+        setTimeout(() =>  window.location.reload(history.push('/voce/tem')), 2000)
+       
+        
+      }
 
-
-    const postSale = ()=>{
-      return isSaleValid( cart < 1 ?
-      (<Alert variant='danger' >Voce ainda não adicionou nenhum item no carrinho.</Alert>)
-      :
-      ( <Redirect to='/voce'/>))
     }
 
     return (
@@ -61,13 +82,15 @@ import api from '../../services/api';
           </Helmet>
           <Header />
           <Zap/>
+{!signed ?(        
+        <>
           <main>
             <Image src={image} alt="Oops" fluid></Image>
               <Row>
                 <Col sm={8}>
                 <ListGroup variant='flush'>
-                    <ListGroup.Item>
-                      <h3>{product}</h3>
+                    <ListGroup.Item className="text-capitalize title-box">
+                      <strong> {product}</strong>
                     </ListGroup.Item>
 
                     <ListGroup.Item>
@@ -80,7 +103,7 @@ import api from '../../services/api';
                 <Col sm={4}>
                     <Card>
                       <ListGroup variant='flush'  >
-                        <ListGroup.Item className="justify-content-lg-center">
+                        <ListGroup.Item >
                           <Row>
                             <Col>Preço: </Col>
                             <Col>
@@ -93,71 +116,42 @@ import api from '../../services/api';
                           <Row>
                               <Col>Status: </Col>
                               <Col>
-                                {quantity > 0 ? 'Em Estoque' : 'Esgotado'}
+                                {sold == false ? 'Em Estoque' : 'Esgotado'}
                               </Col>
                           </Row>
                         </ListGroup.Item>
-                        <ListGroup.Item>
-                        <Button
-                            id="cart"
-                            className='btn-group'
-                            type='button'
-                            onClick={addToCart}
-                            // disabled={}.countInStock === 0}
-                          >
-                          Adicionar ao Carrinho
-                        </Button>
-
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        <Row>
-                          <Col>
-                          <p>Carrinho:</p>
-                          </Col>
-
-                          <Col>
-                            {cart}
-                          </Col>
-                        </Row>
-                      </ListGroup.Item>
                     </ListGroup>
                   </Card>
                 </Col>
             </Row>
           </main>
-
-          <footer>
-          <Row>
-            <Col>
+         
+          <footer >
             <Row>
               { signed ? 
-                <Col>
+                (<Col>
                 <Link className='btn btn-light my-3' to='/admin'>
                 Voltar
                 </Link>
-                </Col> :
-                <Col>
+                </Col> ):
+                (<Col>
                   <Link className='btn btn-light my-3' to='/'>
                   Voltar
                   </Link>
-                </Col> 
-              }
+                </Col> )}
 
-              <Col>
-                <Link onClick={postSale} className='btn btn-success  my-3' >
+              <Col >
+                <Link onClick={postSale} className='btn btn-success float-sm-right my-3'   >
                 Comprar
                 </Link>
               </Col>
-
-              <Col>
-                {valid}
-              </Col>
-
             </Row>
-            </Col>
-
-          </Row>
-          </footer>
+          </footer> </>) 
+          : 
+          (<Link to='/QuatroZeroQuatro'>
+            Nao foi possivel achar seu produto.
+          </Link>)}
+        
       </>
       )
     }
