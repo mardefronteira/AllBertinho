@@ -10,9 +10,6 @@ function Inicial() {
         <title>ALLBERTINHO</title>
       </Helmet>
       <Header />
-      <main>
-        <h2>Página inicial!</h2>
-      </main>
     </>
   )
 }
