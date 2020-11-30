@@ -9,7 +9,6 @@ function AnunciosAtivos() {
   useEffect(() => {
     const fetchProducts = async () => {
       const res = await api.get("/product");
-      console.log(res.data);
       setProduct(res.data);
     };
 

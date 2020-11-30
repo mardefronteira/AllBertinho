@@ -11,7 +11,6 @@ const history = createBrowserHistory();
 export function* signInRequest({ payload }) {
   try {
     const { email, password } = payload;
-
     const response = yield call(api.post, 'signin', {
       email,
       password
