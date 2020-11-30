@@ -5,7 +5,6 @@ import { Helmet } from 'react-helmet';
 import { Alert, Row, Col, Image, ListGroup, Card, Button } from "react-bootstrap";
 import Header from '../../components/Header';
 
-import DetalheProduto from "../../components/DetalheProduto";
 import api from '../../services/api';
 
 
@@ -69,7 +68,6 @@ import api from '../../services/api';
                     </ListGroup.Item>
 
                     <ListGroup.Item>
-                      <DetalheProduto/>
                       {description}
                     </ListGroup.Item>
                   </ListGroup>

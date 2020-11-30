@@ -6,7 +6,6 @@ import { BrowserRouter, Switch, Route, withRouter } from 'react-router-dom';
 import Header from '../../components/Header';
 import NavCliente from '../../components/NavCliente';
 import HistoricoCompras from '../../components/HistoricoCompras';
-import DetalheProduto from '../../components/DetalheProduto';
 
 function Cliente() {
   const client = {
@@ -23,8 +22,6 @@ function Cliente() {
         <section>
           <Switch>
             <Route exact path="/voce/tem" component={HistoricoCompras} />
-            {/*<Route path="/voce/quer" component={Favoritos} />*/}
-            <Route path="/voce/tem/:id" component={DetalheProduto} />
           </Switch>
         </section>
       </main>
