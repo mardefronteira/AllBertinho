@@ -21,7 +21,7 @@ export default function Routes() {
 
       <RouterPrivate path="/product/:id" component={Produto} />
 
-//       <Route path="/voce-quer/:id" component={Produto} />
+      <Route path="/voce-quer/:id" component={Produto} />
 
       <RouterPrivate path="/login" component={Login} />
       <RouterPrivate path="/" component={Inicial} exact />
