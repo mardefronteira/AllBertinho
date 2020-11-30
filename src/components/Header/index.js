@@ -11,7 +11,7 @@ import store from '../../store';
 function Header () {
   const dispatch = useDispatch();
   const history = createBrowserHistory();
-  const { signed } = store.getState().auth;
+  const { signed, admin } = store.getState().auth;
 
   const handleLogout = e => {
     e.preventDefault();
@@ -28,11 +28,20 @@ function Header () {
           <h1>ALLBERTINHO</h1>
         </LinkContainer>
         <Nav>
-          <LinkContainer to="/product/5fc4259a4f542400176bf749">
+          {/*signed && !admin && <LinkContainer to="/product/5fc4259a4f542400176bf749">
             <Nav.Link>Detalhes Produto</Nav.Link>
-          </LinkContainer>
+          </LinkContainer> */
+          }          
           {!signed && <LinkContainer to="/login">
             <Nav.Link>Login</Nav.Link>
+          </LinkContainer>
+          }
+          {signed && !admin && <LinkContainer to="/admin">
+            <Nav.Link>Dashboard</Nav.Link>
+          </LinkContainer>
+          }
+          {signed && admin && <LinkContainer to="/voce">
+            <Nav.Link>Dashboard</Nav.Link>
           </LinkContainer>
           }
           {signed &&

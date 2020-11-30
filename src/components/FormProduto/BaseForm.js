@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Field } from 'formik';
 import * as Yup from 'yup';
 import FormField from '../FormField';
 import { Input } from '../FormField/style.js';
+import Download from './Download';
 
 const BaseForm = ({
   values,
   errors,
   isSubmitting,
+  urlQrcode,
 }) => (
     <>
       <Form>
@@ -52,6 +54,7 @@ const BaseForm = ({
         </FormField>
 
         <button type="submit" disabled={isSubmitting}>Cadastrar</button>
+         {/**<Download url={urlQrcode} />*/}
       </Form>
     </>
   );
