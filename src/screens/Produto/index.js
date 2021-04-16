@@ -60,6 +60,7 @@ import Zap from '../../components/Zap';
       const {data} =  await api.get(`/product/${id}`)
 
         const history = createBrowserHistory();
+        toast.success("Adicionado ao carrinho!")
         dispatch(actions.addToCartRequest(data[0]))
         setTimeout(() =>  window.location.reload(history.push('/voce')), 2000)
     }

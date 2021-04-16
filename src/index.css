@@ -33,8 +33,11 @@ section {
 footer {
   margin: 5vh 12vw;
 }
+.button-margin{
+  margin: 4px;
+}
 .card-margin{
-  margin: 5px 8px;
+  padding: 2vh 1vw;
  }
 
 .card-landing {
@@ -43,6 +46,11 @@ footer {
 
 .title-box{
   font-size: 17px;
+}
+.box-cart{
+  font-size: 17px; 
+  margin: 17px 7px;
+  text-align: center;
 }
 
 .txt-capitalize{

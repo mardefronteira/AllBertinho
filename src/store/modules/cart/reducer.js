@@ -8,7 +8,6 @@ export default function cart(state = [], action) {
             return produce(state, (draft) => {
                 console.log(action)
                 draft.push({...action.products});
-                toast.success('Produto adicionado ao seu carrinho');
             });
 
         case 'REMOVE_PRODUCTS_TO_CART':
